@@ -1,0 +1,36 @@
+
+@mixin desktop {
+    @media (min-width: 1280px){
+        @content;
+    }
+}
+@mixin desktop-below {
+    @media (min-width: 1024px){
+        @content;
+    }
+}
+@mixin pad{
+     @media (min-width: 768px){
+        @content;
+    }
+}
+@mixin phone{
+     @media (min-width: 767px){
+        @content;
+    }
+}
+@mixin iphone-hz{
+     @media (min-width: 568px){
+        @content;
+    }
+}
+@mixin iphone6{
+     @media (min-width: 375px){
+        @content;
+    }
+}
+@mixin iphone5{
+     @media (max-width: 320px){
+        @content;
+    }
+}

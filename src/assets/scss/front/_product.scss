@@ -1,0 +1,42 @@
+
+.product{
+  .input-group.product-num{
+    width: 35%;
+    @include desktop-below{
+      width: 25%;
+    }
+  }
+  .content{
+    white-space: pre;
+    line-height: 1.75;
+  }
+  .product-img-sm{
+    width: 18%;
+    &:not(:last-child){
+      margin-right: 2.5%;
+    }
+    &:hover{
+      outline: 1px solid red;
+    }
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include pad{
+      flex-direction: row;
+    }
+  }
+  .buttons .btn{
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 1rem;
+    @include pad{
+      width: 48%;
+    }
+  }
+  .notes li{
+    list-style: decimal;
+    padding-left: 1rem;
+  }
+}

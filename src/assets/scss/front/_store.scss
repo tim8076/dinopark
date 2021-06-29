@@ -1,0 +1,83 @@
+
+.store{
+  .ad-image{
+    height: 150px;
+    object-fit: cover;
+    @include pad {
+      height: 300px;
+    }
+    @include desktop-below{
+      height: 400px;
+    }
+  }
+  .list-group{
+    border-radius: 0px;
+  }
+  .list-group-item{
+    border-bottom: 1px solid rgba(0,0,0,.3) ;
+    background-color: $gray-100;
+    img{
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+  }
+  .list-group-item:hover,
+  .list-group-item.active{ 
+    background-color: $secondary;
+    border-color: rgba(0, 0, 0, 0.3);
+    color: #000;
+  }
+
+  &__card{
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+  }
+  &__card .link-area{
+    position: relative;
+    overflow: hidden;
+    .link{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background-color: rgba(0,0,0,.4);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      transform: translateX(-100%);
+      transition: transform .3s ease-in-out;
+    }
+    .link > .favorite-btn{
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      
+    }
+    .img{
+      overflow: hidden;
+    }
+    .img img{
+      transition: all .2s ease-in;
+    }
+    &:hover img{
+      transform: scale(1.15);
+    }
+    &:hover .link{
+      transform: translateX(0);
+    }
+  }
+  &__card .btn{
+    border-radius: 0px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

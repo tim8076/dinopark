@@ -1,0 +1,21 @@
+
+a{
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+.breadcrumb a {
+  &:hover{
+      color: $primary !important;
+      text-decoration: underline;
+  }
+}

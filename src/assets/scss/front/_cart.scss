@@ -1,0 +1,44 @@
+
+.cart-page{
+  .title{
+      background-image: url('./assets/logo/cart-title.jpg');
+      height:160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .title h1{
+     padding: 8px 16px;
+     color: $white;
+     background-color: rgba(0,0,0,.7);
+  }
+  .cart .table{
+    width: 700px;
+    @include pad{
+      width: 100%;
+    }
+  }
+  .cart_list .input-group{
+    width: 65%;
+    font-size: 3rem;
+  }
+  .cart_list,
+  .coupon{
+    font-size: 1.15rem;
+  }
+  .table__head,
+  .coupon__title{
+      background-color: $primary-100;
+  }
+  .cart_order{
+    .buttons{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .buttons .btn{
+      display: flex;
+      align-items: center;
+    }
+  }
+}

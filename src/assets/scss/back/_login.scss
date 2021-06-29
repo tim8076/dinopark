@@ -1,0 +1,31 @@
+
+.logIn{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./assets/logo/login.png');
+}
+.logIn .card{
+    width: 90%;
+    @include iphone-hz{
+        width: 80%;
+    }
+    @include pad{
+        width: 65%;
+    }
+    @include desktop-below{
+        width: 35%;
+    }
+    .image{
+        height: 150px;
+        object-fit: cover;
+        @include pad{
+           height: 250px;
+        }
+        @include desktop-below{
+           height: 300px;
+        }
+    }
+}

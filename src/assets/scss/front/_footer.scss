@@ -1,0 +1,35 @@
+
+footer.footer{
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    @include pad{
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+    }
+  }
+  .logo{
+    text-align: center;
+    margin-bottom: 1rem;
+    img {
+        width: 120px;
+        height: 85px;
+    }
+  } 
+  .contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a{
+       font-size: 24px;
+       color: $white;
+       display: block;
+       margin: 0 0.5rem;
+       &:hover{
+         color: $secondary;  
+       }
+    }
+  }
+}

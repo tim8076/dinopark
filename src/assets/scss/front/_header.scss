@@ -1,0 +1,201 @@
+.header{
+  position: relative;
+  a{
+    display: block;
+  }
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    @media(max-width:768px){
+      padding: 10px 15px;
+    }
+  }
+  &__logo img{
+    width: 110px;
+    height: 70px;
+  }
+  &__links{
+    display: flex;
+    align-items: center;
+    z-index: 1021;
+    @media(max-width:768px){
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $primary;
+      flex-direction: column;
+      align-items: stretch;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s ease-in-out;
+      &.active{
+         max-height: 800px;
+      }
+    }
+  }
+  &__link{
+    position: relative;
+    &.action{
+      border-bottom: none;
+    }
+    &:hover .sub-links{
+      opacity: 1;
+      visibility: visible;
+    }
+    &:hover > .link{
+      color: $secondary;
+    }
+    @media(max-width:768px){
+      border-bottom: 2px solid $white;
+      text-align: center;
+    }
+  }
+  &__link > .link{
+    color: $white;
+    font-size: 24px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 26px 18px;
+    @media (max-width: 768px) {
+      padding: 18px;
+      &.open ~ .sub-links{
+        max-height: 400px;
+      }
+    }
+  }
+  &__link .shopping_cart{
+    position: relative;
+  }
+  &__link .material-icons.icon-cart,
+  &__link .material-icons.icon-heart{
+    font-size: 2rem;
+    color: $white;
+    &:hover{
+      color: $secondary;
+    }
+    @include desktop-below {
+      font-size: 2.2rem;
+    }
+  }
+  &__link .shopping_cart::before{
+    content: attr(data-num);
+    position: absolute;
+    top: -9px;
+    left: 23px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: $primary;
+    color: $white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (min-width:769px) {
+      top:  16px;
+      left: 32px;
+    }
+    @include desktop-below {
+      top:  13px;
+      left: 36px;
+    }
+  }
+  &__link > .cart{
+    position: absolute;
+    top: 93px;
+    left: -400px;
+    width: 550px;
+    padding: 1.5rem;
+    background-color: $gray-100;
+    border: 2px solid $gray-400;
+    .cart__num{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &::before{
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: 90px;
+      width: 0;
+      height: 0;
+      border: 20px solid;
+      border-color: transparent transparent $gray-100 transparent;
+    }
+  }
+  .sub-links {
+    z-index: 1000;
+    position: absolute;
+    top: 115%;
+    left: -35%;
+    right: -35%;
+    border: 5px solid $primary;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+    &::before{
+      content: "";
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border: 15px solid;
+      border-color: transparent transparent $primary transparent;
+    }
+    @media(max-width:768px){
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      border:none;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 1s ease;
+      &::before{
+        display: none;
+      }
+    }
+  }
+  .sub-links > li {
+    @media(max-width:768px){
+      &:not(:last-child){
+        border-bottom: 2px solid $white;
+      }
+    }
+  }
+  .sub-links .sub-link{
+    padding: 12px 24px;
+    text-align: center;
+    color: $white;
+    background-color: $dark;
+    &:hover{
+      color: $dark;
+      background-color: $secondary;
+    }
+    @media(max-width:768px){
+      padding: 20px 24px;
+    }
+  }
+  .menu-button{
+    border: 3px solid $white;
+    border-radius: 5px;
+    img{
+      max-width: 25px;
+    }
+  }
+  .input-group{
+    button{
+      padding: 0.1rem !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
