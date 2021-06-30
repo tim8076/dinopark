@@ -18,7 +18,9 @@
 @import './front/store';
 @import './front/product';
 @import './front/cart';
-@import './front//checkout';
+@import './front/checkout';
+
+@import './helpers/notfound';
 
 //工具 class
 @import './helpers/helper';

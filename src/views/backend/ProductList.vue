@@ -111,7 +111,7 @@ export default {
           ]
         }
       } else {
-        this.tempProduct = product
+        this.tempProduct = { ...product }
       }
       this.isNew = isNew
       this.$refs.productModal.openModal()
@@ -126,12 +126,7 @@ export default {
             this.products = products
             this.pagination = pagination
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
@@ -149,33 +144,15 @@ export default {
           if (res.data.success) {
             this.$refs.productModal.hideModal()
             this.getProducts(this.pagination.current_page)
-            this.$swal({
-              icon: 'success',
-              title: res.data.message,
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
+            this.swal(res.data.message)
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
     },
     deleteProduct (product) {
-      this.$swal({
-        title: `確認刪除 ${product.title}?`,
-        showConfirmButton: true,
-        showCancelButton: true,
-        reverseButtons: true,
-        icon: 'warning'
-      })
+      this.swalComfirm(`確認刪除 ${product.title}?`)
         .then(willDelete => {
           if (willDelete.isConfirmed) {
             this.isLoading = true
@@ -184,21 +161,9 @@ export default {
               .then(res => {
                 if (res.data.success) {
                   this.getProducts()
-                  this.$swal({
-                    icon: 'success',
-                    title: res.data.message,
-                    toast: true,
-                    position: 'top',
-                    showConfirmButton: false,
-                    timer: 1800
-                  })
+                  this.swal(res.data.message)
                 } else {
-                  this.$swal({
-                    icon: 'error',
-                    title: res.data.message,
-                    position: 'top',
-                    showConfirmButton: true
-                  })
+                  this.swal(res.data.message, 'error')
                 }
                 this.isLoading = false
               })

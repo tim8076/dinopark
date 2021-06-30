@@ -10,7 +10,7 @@
               <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav d-flex justify-content-end">
                   <li class="nav-item">
-                    <router-link class="nav-link text-white" to="/dashboard/productList">產品管理</router-link>
+                    <router-link class="nav-link text-white" to="/dashboard">產品管理</router-link>
                   </li>
                   <li class="nav-item">
                     <router-link class="nav-link text-white" to="/dashboard/orderList">訂單列表</router-link>
@@ -21,7 +21,7 @@
                   <li class="nav-item">
                     <a class="nav-link text-white"
                        href="#"
-                       @click="logOut">
+                       @click.prevent="logOut">
                        登出
                     </a>
                   </li>
@@ -46,6 +46,8 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.$router.push('/login')
+          } else {
+            this.swal(res.data.message, 'error')
           }
         })
     },

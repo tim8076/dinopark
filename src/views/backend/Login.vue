@@ -61,7 +61,9 @@ export default {
           if (res.data.success) {
             const { token, expired } = res.data
             document.cookie = `jurassicToken=${token}; expires=${new Date(expired)}`
-            this.$router.push('/dashboard/productList')
+            this.$router.push('/dashboard')
+          } else {
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })

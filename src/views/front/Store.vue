@@ -166,12 +166,7 @@ export default {
           if (res.data.success) {
             this.allProducts = res.data.products
           } else {
-            // Swal.fire({
-            //   icon: 'error',
-            //   title: 'Oops...',
-            //   text: 'Something went wrong!',
-            //   footer: '<a href="">Why do I have this issue?</a>'
-            // })
+            this.swal(res.data.message, 'error')
           }
         })
     },
@@ -185,12 +180,7 @@ export default {
             this.products = products
             this.pagination = pagination
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
@@ -205,16 +195,13 @@ export default {
         }
       })
         .then(res => {
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1800
-          })
+          if (res.data.success) {
+            this.swal(res.data.message)
+            this.emitter.emit('add-cart')
+          } else {
+            this.swal(res.data.message, 'error')
+          }
           this.isLoading = false
-          this.emitter.emit('add-cart')
         })
     }
   },

@@ -12,7 +12,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr v-for="cart in cartList" :key="cart.id">
+                  <tr v-for="(cart, index) in cartList" :key="cart.id">
                       <th scope="row"
                           class="cart__title">
                           {{ cart.product.title }}
@@ -27,17 +27,17 @@
                                       type="button"
                                       id="button-addon1"
                                       :class="{ 'disabled': cart.qty === 1 }"
-                                      @click="updateCart(cart, cart.qty-1 )">
+                                      @click="updateCart(cart, cart.qty-1, index )">
                                   <span class="material-icons">remove</span>
                               </button>
                               <input  type="text"
                                       class="form-control cart__num"
                                       v-model.number="cart.qty"
-                                      @change="updateCart(cart, cart.qty)">
+                                      @change="updateCart(cart, cart.qty, index)">
                               <button class="btn btn-outline-primary "
                                       type="button"
                                       id="button-addon1"
-                                      @click="updateCart(cart, cart.qty+1 )">
+                                      @click="updateCart(cart, cart.qty+1, index )">
                                   <span class="material-icons">add</span>
                               </button>
                           </div>
@@ -45,18 +45,25 @@
                       <td>NT$ {{ $toCurrency(Math.round(cart.final_total)) }}</td>
                       <td>
                         <a href="#"
-                            @click.prevent="deleteCartItem(cart.id)">
-                            <span class="material-icons" v-if="!isLoading">delete</span>
+                            @click.prevent="deleteCartItem(cart.id, index)">
                             <div class="spinner-border text-primary spinner-border-sm"
                                 role="status"
-                                v-else>
+                                v-if="loadingIndex === index">
                               <span class="visually-hidden">Loading...</span>
                             </div>
+                            <span class="material-icons" v-else>delete</span>
                         </a>
                       </td>
                   </tr>
                   <tr>
-                    <td colspan="4"
+                    <td>
+                      <button class="btn btn-outline-primary"
+                              :class="{ 'disabled' : cartList.length === 0 }"
+                              @click="deleteAllCartItems">
+                        清空購物車
+                      </button>
+                    </td>
+                    <td colspan="3"
                         class="text-end fs-4 text-primary fw-bold">
                         總計: {{ $toCurrency(Math.round(finalTotal)) }} 元
                     </td>
@@ -87,7 +94,7 @@
               結帳去
             </router-link>
             <router-link class="btn btn-primary w-100 fw-bolder"
-                         v-else-if="cartList.length === 0"
+                         v-else-if="cartList.length === 0 && size === 'sm'"
                          to="/dino-park/store">來去逛逛吧
             </router-link>
         </div>
@@ -101,11 +108,12 @@ export default {
       default: 'sm'
     }
   },
+  emits: ['update-num'],
   data () {
     return {
       cartList: [],
       finalTotal: 0,
-      isLoading: false,
+      loadingIndex: null,
       tableWidth: {
         column1: this.size === 'sm' ? 110 : 200,
         column2: this.size === 'sm' ? 140 : 200,
@@ -119,75 +127,64 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api)
         .then(res => {
-          console.log(res)
           if (res.data.success) {
             this.cartList = res.data.data.carts
             this.finalTotal = res.data.data.final_total
             this.$emit('update-num', this.cartList.length)
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
         })
     },
-    deleteCartItem (id) {
-      this.isLoading = true
+    deleteCartItem (id, index) {
+      this.loadingIndex = index
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
       this.$http.delete(api)
         .then(res => {
           if (res.data.success) {
-            this.$swal({
-              icon: 'success',
-              title: res.data.message,
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
-            this.getCartList()
+            this.swal(res.data.message)
             this.emitter.emit('add-cart')
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
-          this.isLoading = false
+          this.loadingIndex = null
         })
     },
-    updateCart (cart, qty) {
-      this.isLoading = true
+    deleteAllCartItems () {
+      this.swalComfirm('確定清空購物車?')
+        .then(willDelete => {
+          if (willDelete.isConfirmed) {
+            const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
+            this.$http.delete(api)
+              .then(res => {
+                if (res.data.success) {
+                  this.swal(res.data.message)
+                  this.emitter.emit('add-cart')
+                } else {
+                  this.swal(res.data.message, 'error')
+                }
+              })
+          }
+        })
+    },
+    updateCart (cart, qty, index) {
+      if (qty < 1) {
+        this.swal('商品數量小於1', 'error')
+        qty = 1
+      }
+      this.loadingIndex = index
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${cart.id}`
       this.$http.put(api, {
         data: { product_id: cart.product.id, qty: qty }
       })
         .then(res => {
           if (res.data.success) {
-            this.$swal({
-              icon: 'success',
-              title: res.data.message,
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
-            this.getCartList()
+            this.swal(res.data.message)
             this.emitter.emit('add-cart')
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
-          this.isLoading = false
+          this.loadingIndex = null
         })
     },
     addCoupon () {
@@ -200,21 +197,9 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.finalTotal = res.data.data.final_total
-            this.$swal({
-              icon: 'success',
-              title: res.data.message,
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
+            this.swal(res.data.message)
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
         })
     }

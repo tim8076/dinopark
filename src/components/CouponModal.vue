@@ -43,6 +43,7 @@
                         <input type="number"
                                class="form-control"
                                id="percent"
+                               min="0"
                                v-model.number="coupon.percent"
                                placeholder="請輸入折扣比率 ex: 60">
                     </div>
@@ -65,7 +66,6 @@
                                id="is_enabled">
                         <label class="form-check-label" for="is_enabled">
                           是否啟用
-                          <span class="text-primary">*</span>
                         </label>
                       </div>
                </div>
@@ -112,7 +112,7 @@ export default {
   },
   watch: {
     tempCoupon () {
-      this.coupon = { ...this.tempCoupon }
+      this.coupon = this.tempCoupon
     }
   },
   methods: {

@@ -29,7 +29,7 @@ import Card from '../../components/Card.vue'
 export default {
   data () {
     return {
-      favoriteProducts: [],
+      favoriteProducts: JSON.parse(localStorage.getItem('favorite')) || [],
       isLoading: false
     }
   },
@@ -49,19 +49,11 @@ export default {
       localStorage.setItem('favorite', JSON.stringify(this.favoriteProducts))
       setTimeout(() => {
         this.isLoading = false
-        this.$swal({
-          icon: 'success',
-          title: '已取消收藏',
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 1800
-        })
+        this.swal('已取消收藏')
       }, 500)
     }
   },
   mounted () {
-    this.favoriteProducts = JSON.parse(localStorage.getItem('favorite'))
     this.isLoading = true
     setTimeout(() => {
       this.isLoading = false

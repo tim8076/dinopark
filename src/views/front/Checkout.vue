@@ -163,12 +163,7 @@ export default {
           if (res.data.success) {
             this.order = res.data.order
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
@@ -182,12 +177,7 @@ export default {
           if (res.data.success) {
             this.isPaid = true
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           setTimeout(() => {
             this.isLoading = false

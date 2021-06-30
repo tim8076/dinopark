@@ -47,7 +47,7 @@
                                class="form-control"
                                id="tel"
                                name="電話"
-                               rules="min:10|required"
+                               rules="min:9|required"
                                v-model="user.tel"
                                :class="{ 'is-invalid': errors['電話'] }"
                                placeholder="ex: 0909111222">
@@ -142,15 +142,10 @@ export default {
         .then(res => {
           if (res.data.success) {
             const orderId = res.data.orderId
-            console.log(orderId)
             this.$router.push({ name: 'checkout', params: { orderId: orderId } })
+            this.emitter.emit('add-cart')
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })

@@ -50,7 +50,7 @@
                                       class="form-control"
                                       :class="{ 'is-invalid': errors['電話'] }"
                                       placeholder="請輸入電話"
-                                      rules="min:10|required"
+                                      rules="min:9|required"
                                       v-model="order.user.tel">
                               </Field>
                               <error-message name="電話" class="invalid-feedback"></error-message>
@@ -126,7 +126,7 @@ export default {
   },
   watch: {
     tempOrder () {
-      this.order = { ...this.tempOrder }
+      this.order = this.tempOrder
     }
   },
   methods: {

@@ -140,7 +140,7 @@ export default {
       product: {
         imagesUrl: []
       },
-      favoriteProducts: [],
+      favoriteProducts: JSON.parse(localStorage.getItem('favorite')) || [],
       cart: {
         product_id: '',
         qty: 1,
@@ -171,12 +171,7 @@ export default {
           if (res.data.success) {
             this.allProducts = res.data.products
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
         })
     },
@@ -197,12 +192,7 @@ export default {
               })
             }
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
@@ -214,22 +204,35 @@ export default {
       this.cart.productSpecs[index].type = spec.type
     },
     addToCart () {
+      // 檢查商品數量是否小於 1
+      if (this.cart.qty < 1) {
+        this.swal('商品數量小於 1', 'error')
+        return
+      }
+      // 檢查客人是否有選商品規格
+      let specCheck = true
+      this.cart.productSpecs.forEach(spec => {
+        if (spec.chosedSpec === '') {
+          specCheck = false
+        }
+      })
+      if (!specCheck) {
+        this.swal('未選擇商品規格', 'error')
+        return
+      }
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.post(api, {
         data: this.cart
       })
         .then(res => {
-          this.$swal({
-            icon: 'success',
-            title: res.data.message,
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1800
-          })
+          if (res.data.success) {
+            this.swal(res.data.message)
+            this.emitter.emit('add-cart')
+          } else {
+            this.swal(res.data.message, 'error')
+          }
           this.isLoading = false
-          this.emitter.emit('add-cart')
         })
     },
     addToFavorite () {
@@ -238,14 +241,7 @@ export default {
       localStorage.setItem('favorite', JSON.stringify(this.favoriteProducts))
       setTimeout(() => {
         this.isLoading = false
-        this.$swal({
-          icon: 'success',
-          title: '已加入收藏',
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 1800
-        })
+        this.swal('已加入收藏')
       }, 1000)
     },
     setImageUrl (image) {
@@ -265,7 +261,6 @@ export default {
         this.getProduct(id)
       }
     )
-    this.favoriteProducts = JSON.parse(localStorage.getItem('favorite'))
   }
 }
 </script>

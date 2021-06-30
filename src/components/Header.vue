@@ -50,7 +50,7 @@
                   <router-link to="/dino-park/store" class="link">恐龍商店</router-link>
                </li>
                <li class="header__link">
-                  <router-link to="/dashboard/productList" class="link">登入後台</router-link>
+                  <router-link to="/dashboard" class="link">登入後台</router-link>
                </li>
                <li class="header__link d-none d-lg-block">
                   <router-link to="/dino-park/favorite" class="fs-3 link">

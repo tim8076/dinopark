@@ -48,7 +48,7 @@ const routes = [
     component: () => import('@/views/backend/Dashboard.vue'),
     children: [
       {
-        path: 'productList',
+        path: '',
         name: 'productList',
         component: () => import('@/views/backend/ProductList.vue')
       },
@@ -63,6 +63,10 @@ const routes = [
         component: () => import('@/views/backend/OrderList.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 const router = createRouter({

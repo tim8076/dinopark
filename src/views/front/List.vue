@@ -1,5 +1,13 @@
 <template>
    <div class="cart_list py-6">
+       <Loading v-model:active="isLoading">
+                 <div class="loadingio-spinner-rolling-feeb69z48bi">
+                  <div class="ldio-947txsafiul">
+                    <div>
+                    </div>
+                  </div>
+                </div>
+        </Loading>
        <div class="container">
           <div class="row mb-6">
             <div class="col-lg-8">
@@ -45,8 +53,19 @@
 <script>
 import Cart from '../../components/MenuCart.vue'
 export default {
+  data () {
+    return {
+      isLoading: false
+    }
+  },
   components: {
     Cart
+  },
+  created () {
+    this.isLoading = true
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   }
 }
 </script>

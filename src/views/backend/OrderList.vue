@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     openModal (order) {
-      this.tempOrder = order
+      this.tempOrder = { ...order }
       this.$refs.orderModal.openModal()
     },
     getOrders (page = 1) {
@@ -99,12 +99,7 @@ export default {
             this.orders = orders
             this.pagination = pagination
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
@@ -118,21 +113,9 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.getOrders(this.pagination.current_page)
-            this.$swal({
-              icon: 'success',
-              title: res.data.message,
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
+            this.swal(res.data.message)
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
           this.$refs.orderModal.hideModal()
@@ -140,13 +123,7 @@ export default {
     },
     deleteOrder (id) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
-      this.$swal({
-        title: '確認刪除訂單?',
-        showConfirmButton: true,
-        showCancelButton: true,
-        reverseButtons: true,
-        icon: 'warning'
-      })
+      this.swalComfirm('確認刪除訂單?')
         .then(willDelete => {
           if (willDelete.isConfirmed) {
             this.isLoading = true
@@ -154,21 +131,9 @@ export default {
               .then(res => {
                 if (res.data.success) {
                   this.getOrders(this.pagination.current_page)
-                  this.$swal({
-                    icon: 'success',
-                    title: res.data.message,
-                    toast: true,
-                    position: 'top',
-                    showConfirmButton: false,
-                    timer: 1800
-                  })
+                  this.swal(res.data.message)
                 } else {
-                  this.$swal({
-                    icon: 'error',
-                    title: res.data.message,
-                    position: 'top',
-                    showConfirmButton: true
-                  })
+                  this.swal(res.data.message, 'error')
                 }
                 this.isLoading = false
               })
@@ -177,13 +142,7 @@ export default {
     },
     deleteAllOrders () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/all`
-      this.$swal({
-        title: '確認刪除 全部訂單?',
-        showConfirmButton: true,
-        showCancelButton: true,
-        reverseButtons: true,
-        icon: 'warning'
-      })
+      this.swalComfirm('確認刪除全部訂單?')
         .then(willDelete => {
           if (willDelete.isConfirmed) {
             this.isLoading = true
@@ -191,21 +150,9 @@ export default {
               .then(res => {
                 if (res.data.success) {
                   this.getOrders(this.pagination.current_page)
-                  this.$swal({
-                    icon: 'success',
-                    title: res.data.message,
-                    toast: true,
-                    position: 'top',
-                    showConfirmButton: false,
-                    timer: 1800
-                  })
+                  this.swal(res.data.message)
                 } else {
-                  this.$swal({
-                    icon: 'error',
-                    title: res.data.message,
-                    position: 'top',
-                    showConfirmButton: true
-                  })
+                  this.swal(res.data.message, 'error')
                 }
                 this.isLoading = false
               })

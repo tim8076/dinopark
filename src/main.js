@@ -1,19 +1,35 @@
 // 外部插件
 import { createApp } from 'vue'
+
+// 匯入 axios
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
+
+// 匯入 router
 import router from './router'
+
+// 匯入 mitt 套件
 import mitt from 'mitt'
+
+// 匯入 sweetalert2
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+
+// 匯入 vue-loading套件
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
+
+// 匯入 bootstrap js
 import bootstrap from 'bootstrap'
+
+// 匯入 表單驗證套件
 import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate'
 import { required, email, min } from '@vee-validate/rules'
 import { localize, setLocale, loadLocaleFromURL } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+
+// 匯入 swiper 輪播套件
 import SwiperCore, { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 // Import Swiper styles
@@ -21,14 +37,17 @@ import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
 
-// 自製元件
+// 匯入自製元件
 import Alert from '@/components/Alert.vue'
 import Filters from '@/mixins/Filters.vue'
+import swal from './components/tools/Swal.vue'
 
 const app = createApp(App)
 
-// 載入全域filter mixin
-app.mixin(Filters)
+// 載入全域 mixin
+app.mixin({
+  mixins: [Filters, swal]
+})
 
 // 啟用外部套件
 SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay])

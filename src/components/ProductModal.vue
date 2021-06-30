@@ -107,6 +107,7 @@
                             </label>
                             <input type="number"
                                    class="form-control"
+                                   min="0"
                                    id="origin_price"
                                    v-model.number="tempProduct.origin_price"
                                    placeholder="請輸入商品原價">
@@ -119,6 +120,7 @@
                             </label>
                             <input type="number"
                                    class="form-control"
+                                   min="0"
                                    id="price"
                                    v-model.number="tempProduct.price"
                                    placeholder="請輸入商品售價">
@@ -277,7 +279,7 @@ export default {
   },
   watch: {
     temp () {
-      this.tempProduct = { ...this.temp }
+      this.tempProduct = this.temp
     }
   },
   methods: {
@@ -343,21 +345,9 @@ export default {
                 this.tempProduct.imagesUrl[4] = res.data.imageUrl
                 break
             }
-            this.$swal({
-              icon: 'success',
-              title: '成功上傳圖片',
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 1800
-            })
+            this.swal('成功上傳圖片')
           } else {
-            this.$swal({
-              icon: 'error',
-              title: res.data.message,
-              position: 'top',
-              showConfirmButton: true
-            })
+            this.swal(res.data.message, 'error')
           }
           this.isLoading = false
         })
