@@ -18,6 +18,7 @@ export default {
         timer: time
       })
     },
+    // 確認對話框
     swalComfirm (msg) {
       return this.$swal({
         title: msg,
