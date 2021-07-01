@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0cf4c3"],{"62b3":function(e,c,t){"use strict";t.r(c);var r=t("7a23"),n={class:"cart-page"},o=Object(r["createVNode"])("div",{class:"title bg-cover"},[Object(r["createVNode"])("h1",null,"結帳流程")],-1);function a(e,c,t,a,d,u){var b=Object(r["resolveComponent"])("router-view");return Object(r["openBlock"])(),Object(r["createBlock"])("div",n,[o,Object(r["createVNode"])(b)])}var d={data:function(){return{}}};d.render=a;c["default"]=d}}]);
-//# sourceMappingURL=chunk-2d0cf4c3.13946820.js.map
