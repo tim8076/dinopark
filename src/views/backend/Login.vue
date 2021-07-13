@@ -9,7 +9,7 @@
             </div>
     </Loading>
     <div class="card border border-primary border-2" >
-        <img src="../../assets/logo/dinopark.png" class="card-img-top image" alt="">
+        <img src="../../assets/logo/dinopark-full.png" class="card-img-top image" alt="">
         <div class="card-body p-8">
             <h3 class="mb-5 text-center text-primary">登入後台</h3>
             <form @submit.prevent="signIn">

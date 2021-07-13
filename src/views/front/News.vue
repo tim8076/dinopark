@@ -1,0 +1,72 @@
+<template>
+   <div class="news__page bg-color">
+      <Loading v-model:active="isLoading">
+                    <div class="loadingio-spinner-rolling-feeb69z48bi">
+                    <div class="ldio-947txsafiul">
+                        <div>
+                        </div>
+                    </div>
+                    </div>
+      </Loading>
+      <div class="container py-5 mh-100vh">
+            <Breadcrumb :breadcrumb="{
+              link2: {
+                title: '最新消息',
+                link: '/dino-park/news'
+              },
+              link3: {
+                show: false
+              }
+            }">
+            </Breadcrumb>
+            <div class="row mb-6">
+                <div class="col-md-4"
+                     v-for="article in news"
+                     :key="article.id">
+                    <NewsCard :news="article">
+                    </NewsCard>
+                </div>
+            </div>
+      </div>
+   </div>
+</template>
+<script>
+import NewsCard from '../../components/front/NewsCard.vue'
+
+export default {
+  data () {
+    return {
+      isLoading: false,
+      articles: []
+    }
+  },
+  computed: {
+    news () {
+      return this.articles.filter(article => {
+        return article.tag.includes('公園新聞')
+      })
+    }
+  },
+  components: {
+    NewsCard
+  },
+  methods: {
+    getArticles (page = 1) {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles?page=${page}`
+      this.$http.get(api)
+        .then(res => {
+          if (res.data.success) {
+            this.articles = res.data.articles
+          } else {
+            this.swal(res.data.message)
+          }
+          this.isLoading = false
+        })
+    }
+  },
+  created () {
+    this.getArticles()
+  }
+}
+</script>

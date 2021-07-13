@@ -9,7 +9,23 @@
                 </div>
         </Loading>
        <div class="container">
-          <div class="row ">
+          <div class="progress__area mb-6 py-6">
+             <div class="progress__bar">
+                <div class="dotbox active">
+                   <div class="dot">1</div>
+                   <span>購物車</span>
+                </div>
+                <div class="dotbox active">
+                   <div class="dot">2</div>
+                   <span>填寫資料</span>
+                </div>
+                <div class="dotbox">
+                   <div class="dot">3</div>
+                   <span>訂單確認</span>
+                </div>
+             </div>
+          </div>
+          <div class="row mb-6">
              <div class="col-10 col-md-8 mx-auto border border-3 p-0">
                  <h2 class="cart-title">訂購人資料</h2>
                  <Form class="inputs p-6 "
@@ -43,7 +59,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tel" class="form-label">電話</label>
-                        <Field type="number"
+                        <Field type="tel"
                                class="form-control"
                                id="tel"
                                name="電話"

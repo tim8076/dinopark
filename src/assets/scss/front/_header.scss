@@ -1,7 +1,27 @@
 .header{
-  position: relative;
-  a{
-    display: block;
+  background-color: $dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1024;
+  &.small{
+    @include desktop-below {
+       background-color: rgba(0,0,0,.7);
+    }
+    .header__logo img{
+      width: 80px;
+      height: 60px;
+    }
+    .header__link > .link{
+      padding: 16px 18px;
+    }
+    .header__link .shopping_cart::before{
+      @include desktop-below {
+        top:  5px;
+        left: 41px;
+      }
+    }
   }
   .container{
     display: flex;
@@ -12,9 +32,17 @@
       padding: 10px 15px;
     }
   }
+  .link,
+  .sub-link{
+    display: block;
+  }
   &__logo img{
-    width: 110px;
-    height: 70px;
+    width: 80px;
+    height: 60px;
+    @include pad {
+      width: 107px;
+      height: 80px;
+    }
   }
   &__links{
     display: flex;

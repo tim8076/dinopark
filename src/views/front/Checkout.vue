@@ -8,8 +8,24 @@
         </div>
     </Loading>
     <div class="checkout">
-       <div class="container py-6" v-if="!isPaid">
-          <div class="row flex-column px-2">
+       <div class="container py-6 mh-100vh"  v-if="!isPaid">
+          <div class="progress__area mb-6 py-6">
+             <div class="progress__bar">
+                <div class="dotbox active">
+                   <div class="dot">1</div>
+                   <span>購物車</span>
+                </div>
+                <div class="dotbox active">
+                   <div class="dot">2</div>
+                   <span>填寫資料</span>
+                </div>
+                <div class="dotbox active">
+                   <div class="dot">3</div>
+                   <span>訂單確認</span>
+                </div>
+             </div>
+          </div>
+          <div class="row flex-column px-2 mb-6">
              <div class="col-md-6 mx-auto border border-3 p-0 mb-6">
                 <h2 class="cart-title">訂單小計</h2>
                 <div class="p-3 p-md-6">
@@ -94,43 +110,42 @@
              </div>
           </div>
        </div>
-       <div class="container-fluid " v-else>
-         <div class="row">
-            <div class="col-md-6 p-6 d-none d-md-block">
-              <div class="bg-cover margin-left-nagative"></div>
-            </div>
-            <div class="col-md-6 p-6">
-              <h2 class="fs-1 fw-bolder text-info d-flex">
-                <span class="material-icons md-48 me-3 mb-3">check_circle</span>
-                付款成功
-              </h2>
-              <h2 class="fw-bold mb-3">購買明細</h2>
-              <div class="info-area border-bottom mb-6">
-                <h4 class="mb-3">購買品項</h4>
-                <p v-for="product in productList" :key="product.id">
-                  {{ product.product.title }}
-                  <span v-for="spec in product.productSpecs"
-                        :key="spec">
-                    ({{ spec.chosedSpec }})
-                  </span>
-                  * {{ product.qty }}
-                </p>
-              </div>
-              <div class="info-area border-bottom mb-6">
-                <h4 class="mb-3">運送地址</h4>
-                <p class="mb-2">{{ order.user.address }}</p>
-              </div>
-              <div class="info-area border-bottom mb-6">
-                <h4 class="mb-3">付款資訊</h4>
-                <p class="mb-2">地址: {{ order.user.address }}</p>
-                <p class="mb-2">姓名: {{ order.user.name }}</p>
-                <p>付款方式: {{ order.user.payment_method }}</p>
-              </div>
-              <div class="d-flex justify-content-center">
-                <router-link to="/dino-park/store"
-                             class="btn btn-primary w-75">
-                             再去逛逛
-                </router-link>
+       <div class="container my-9" v-else>
+         <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="p-6">
+                <h2 class="fs-1 fw-bolder text-info d-flex justify-content-center align-items-center">
+                  <span class="material-icons md-48">check_circle</span>
+                  付款成功
+                </h2>
+                <div class="info-area border-bottom mb-6">
+                  <p class="fs-4 text-center">感謝您的購買，您訂單將於三日內配送</p>
+                  <h4 class="mb-3 fw-bold">購買品項</h4>
+                  <p v-for="product in productList" :key="product.id">
+                    {{ product.product.title }}
+                    <span v-for="spec in product.productSpecs"
+                          :key="spec">
+                      ({{ spec.chosedSpec }})
+                    </span>
+                    * {{ product.qty }}
+                  </p>
+                </div>
+                <div class="info-area border-bottom mb-6">
+                  <h4 class="mb-3 fw-bold">運送地址</h4>
+                  <p class="mb-2">{{ order.user.address }}</p>
+                </div>
+                <div class="info-area border-bottom mb-6">
+                  <h4 class="mb-3 fw-bold">付款資訊</h4>
+                  <p class="mb-2">地址: {{ order.user.address }}</p>
+                  <p class="mb-2">姓名: {{ order.user.name }}</p>
+                  <p>付款方式: {{ order.user.payment_method }}</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <router-link to="/dino-park/store"
+                               class="btn btn-primary w-75">
+                               再去逛逛
+                  </router-link>
+                </div>
               </div>
             </div>
           </div>

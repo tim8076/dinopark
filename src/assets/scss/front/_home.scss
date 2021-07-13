@@ -1,0 +1,223 @@
+
+.home__page{
+   background-attachment: fixed;
+  .container,
+  .container-fluid{
+      padding-top: 18px;
+      padding-bottom: 18px;
+      @include pad  {
+          padding-top: 36px;
+          padding-bottom: 36px;
+      }
+   } 
+   .title{
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+  .jumbotron__container{
+      display: block;
+      height: 35vh;
+     @include iphone-hz {
+       height: 80vh;
+     }
+     @include pad {
+       height: 50vh;
+     }
+     @include desktop-below{
+       height: calc(90vh - 96.8px);
+     }
+  }
+  .infos{
+    background-color: $gray-100;
+    &__items{
+      display: flex;
+    }
+    &__item{
+      padding: 0 0.25rem;
+      border-left: 1px solid $gray-400;
+      flex: 1;
+      @include pad {
+        padding: 1rem ;
+      }
+    }
+    &__item .link{
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      padding: 0.5rem 0;
+      @include desktop-below {
+        flex-direction: row;
+        align-items: center;
+        .icon,
+        .txt{
+            width: 50%;
+        }
+      }
+      &.red{
+          color: $primary;
+          &:hover{
+              background-color: $primary;
+          } 
+      }
+      &.green{
+          color: $success;
+          &:hover{
+              background-color: $success;
+          } 
+      }
+      &.yellow{
+          color: orange;
+          &:hover{
+              background-color: orange;
+          } 
+      }
+      &.blue{
+          color: $blue;
+          &:hover{
+              background-color: $blue;
+          } 
+      }
+      &.purple{
+          color: $purple;
+          &:hover{
+              background-color: $purple;
+          } 
+      }
+      .txt{
+        color: $dark;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include desktop-below {
+            align-items: flex-start;
+        }
+        h5{
+            font-size: 12px;
+            @include pad {
+                font-size: 1.25rem;
+            }
+        }
+        p{
+            display: none;
+            margin: 0;
+            color: $gray-600;
+            @include pad {
+                display: block;
+            }
+        }
+      }
+      .material-icons{
+         font-size: 40px;
+         @include pad {
+             font-size: 80px;
+         }
+      }
+      &:hover{
+        color: $white;
+        .txt,
+        .txt p{
+            color: $white;
+        }
+      }
+    }
+  }
+  .news{
+    background-color: #eeffd0;
+  }
+  .areas{
+    background-color: $gray-100;
+    &__item{
+       display: block;
+       height: 260px;
+       position: relative;
+       overflow: hidden;
+       border: 1px solid $gray-400;
+       border-radius: 5px;
+       &::before{
+         content: '';
+         font-family: 'Material Icons';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: transparent;
+         transition: background-color .3s ease-in-out;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 4rem;
+       }
+       .areas__title{
+         position: absolute;
+         display: block;
+         left: 0;
+         bottom: 0;
+         width: 100%;
+         padding: .5rem 0;
+         text-align: center;
+         background-color: $white;
+         color:$dark;
+         font-size: 1.5rem;
+         font-weight: bold;
+         transition: transform .3s ease-in-out;
+       }
+       &:hover::before{
+          background-color: rgba(200,65,49, .5);
+          content: 'zoom_in';
+          color: $white;
+       }
+       &:hover .areas__title{
+          transform: translateY(100%); 
+       }
+    }
+    &__item.map{
+       background-size: contain;
+    }
+  }
+  .comments{
+    background-color: #eeffd0;
+    &__item .image{
+      text-align: center;
+      img{
+        object-fit: cover;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+      }
+    }
+    &__item .text{
+      padding: 1rem;
+      font-size: 1.25rem;
+    }
+  }
+  .slogan{
+    height: 600px;
+    position: relative;
+    display: none;
+    @include desktop-below {
+      &{
+        display: block;
+      }
+    }
+    .text{
+      padding: 1rem;
+      background-color: $secondary;
+      position: absolute;
+      right: 0;
+      top: 10%;
+      width: 30%;
+      opacity: 0.8;
+    }
+    .text h3{
+      font-size: 48px;
+    }
+    .text p{
+      font-size: 28px;
+    }
+  }
+  .shop{
+    background-color: $gray-100;
+  }
+}

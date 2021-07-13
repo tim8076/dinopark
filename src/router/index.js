@@ -10,6 +10,30 @@ const routes = [
     component: () => import('@/views/front/Index.vue'),
     children: [
       {
+        path: 'home',
+        component: () => import('@/views/front/Home.vue')
+      },
+      {
+        path: 'news',
+        component: () => import('@/views/front/News.vue')
+      },
+      {
+        path: 'news/:id',
+        component: () => import('../views/front/NewsSingle.vue')
+      },
+      {
+        path: 'info/:type',
+        component: () => import('../views/front/Information.vue')
+      },
+      {
+        path: 'map',
+        component: () => import('@/views/front/ParkMap.vue')
+      },
+      {
+        path: 'areas/:id',
+        component: () => import('@/views/front/Area.vue')
+      },
+      {
         path: 'store',
         component: () => import('@/views/front/Store.vue')
       },
@@ -19,7 +43,7 @@ const routes = [
       },
       {
         path: 'favorite',
-        component: () => import('../views/front/Favorite.vue')
+        component: () => import('@/views/front/Favorite.vue')
       },
       {
         path: 'cart',
@@ -27,16 +51,16 @@ const routes = [
         children: [
           {
             path: 'list',
-            component: () => import('../views/front/List.vue')
+            component: () => import('@/views/front/List.vue')
           },
           {
             path: 'order',
-            component: () => import('../views/front/Order.vue')
+            component: () => import('@/views/front/Order.vue')
           },
           {
             path: 'checkout/:orderId',
             name: 'checkout',
-            component: () => import('../views/front/Checkout.vue')
+            component: () => import('@/views/front/Checkout.vue')
           }
         ]
       }
@@ -61,6 +85,11 @@ const routes = [
         path: 'orderList',
         name: 'orderList',
         component: () => import('@/views/backend/OrderList.vue')
+      },
+      {
+        path: 'articleList',
+        name: 'articleList',
+        component: () => import('../views/backend/Article.vue')
       }
     ]
   },

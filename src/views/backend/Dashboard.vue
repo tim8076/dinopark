@@ -3,7 +3,7 @@
        <header class="mb-3">
           <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3 fw-bold">
             <div class="container ">
-              <router-link class="navbar-brand" to="/dino-park">戴樂恐龍公園</router-link>
+              <router-link class="navbar-brand" to="/dino-park/home">戴樂恐龍公園</router-link>
               <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -14,6 +14,9 @@
                   </li>
                   <li class="nav-item">
                     <router-link class="nav-link text-white" to="/dashboard/orderList">訂單列表</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link class="nav-link text-white" to="/dashboard/articleList">文章列表</router-link>
                   </li>
                   <li class="nav-item">
                     <router-link class="nav-link text-white" to="/dashboard/couponList">優惠券</router-link>
@@ -46,6 +49,7 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.$router.push('/login')
+            document.cookie = 'jurassicToken= ; expires= Thu, 01 Jan 1970 00:00:00 GMT'
           } else {
             this.swal(res.data.message, 'error')
           }

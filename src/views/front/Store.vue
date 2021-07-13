@@ -1,5 +1,5 @@
 <template>
-   <div class="store pb-8">
+   <div class="store pb-8 bg-color">
       <Loading v-model:active="isLoading">
                  <div class="loadingio-spinner-rolling-feeb69z48bi">
                   <div class="ldio-947txsafiul">
@@ -8,17 +8,17 @@
                   </div>
                 </div>
       </Loading>
-      <div class="container">
-         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb my-5 fs-5">
-              <li class="breadcrumb-item">
-                  <router-link to="/dino-park" class="text-dark">首頁</router-link>
-              </li>
-              <li class="breadcrumb-item">
-                  <router-link to="/dino-park/store" class="text-dark">恐龍商城</router-link>
-              </li>
-            </ol>
-        </nav>
+      <div class="container py-5">
+        <Breadcrumb :breadcrumb="{
+          link2: {
+            title: '恐龍商城',
+            link: '/dino-park/store'
+          },
+          link3: {
+            show: false
+          }
+        }">
+        </Breadcrumb>
         <swiper class="mb-6"
               :slides-per-view="1"
               :space-between="20"
@@ -43,7 +43,7 @@
                 </router-link>
               </swiper-slide>
               <swiper-slide>
-                <router-link to="/dino-park/store/-McV2fnLz-MYMP551VEJ">
+                <router-link to="/dino-park/store/-MeVCkPSo5C_FlTaijOM">
                   <img class="w-100 ad-image"
                   src="@/assets/ad/product-image-3.png" alt="product-image-3">
                 </router-link>
@@ -93,18 +93,6 @@
               </div>
             </div>
             <div class="col-lg-9">
-              <div class="input-group mb-3 w-75 mb-6">
-                <input type="text"
-                       class="form-control border border-primary rounded-0"
-                       placeholder="搜尋商品"
-                       ref="searchInput">
-                <button class="btn btn-primary rounded-0"
-                        type="button"
-                        id="button-addon2"
-                        @click="searchProduct">
-                        搜尋
-                </button>
-              </div>
               <div class="row">
                   <div class="col-md-6 col-lg-4 mb-5" v-for="product in typeProducts" :key="product.id">
                         <Card :product-data="product"
@@ -122,7 +110,7 @@
    </div>
 </template>
 <script>
-import Card from '../../components/Card.vue'
+import Card from '../../components/front/Card.vue'
 import Pagination from '@/components/Pagination.vue'
 
 export default {

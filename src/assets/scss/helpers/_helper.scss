@@ -4,27 +4,51 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
-//table
-.table-responsive{
-  overflow-x: scroll;
-  @include desktop-below{
-    overflow-x:auto
+.img-cover{
+    object-fit: cover;
+}
+
+.bg-contain{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.mh-100vh{
+  min-height: calc(100vh - 245px );
+}
+
+.bg-color{
+  background-color: rgb(255, 243, 243);
+}
+
+//響應式class
+.hide-for-pad{
+  display: block;
+  @include pad {
+    display: none;
   }
 }
+.hide-for-mobile{
+  display: none;
+  @include pad {
+    display: block;
+  }
+}
+
+
+//表格響應式斷行
+.table{
+  @include iphone-hz{
+    .br{
+       display: none;
+    }
+  }
+}
+
 
 //container margin negtive
 .margin-left-nagative{
   margin-left: -($grid-gutter-width / 2)
-}
-
-//cart title樣式
-.cart-title{
-  background-color: $primary-100;
-  padding: 10px 0;
-  text-align: center;
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: bold;
 }
 
 
@@ -83,6 +107,9 @@
 }
 .material-icons.md-48 { 
     font-size: 48px;
+}
+.material-icons.md-80 { 
+    font-size: 80px;
 }
 
 //swiper

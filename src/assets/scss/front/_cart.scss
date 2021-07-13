@@ -12,23 +12,64 @@
      color: $white;
      background-color: rgba(0,0,0,.7);
   }
-  .cart .table{
-    width: 700px;
-    @include pad{
-      width: 100%;
+  .progress__bar{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include pad {
+      width: 70%;
     }
   }
-  .cart_list .input-group{
-    width: 65%;
-    font-size: 3rem;
+  .progress__bar .dotbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 33.3333%;
   }
+  .progress__bar .dotbox + .dotbox::before{
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: -50%;
+    transform: translateY(-50%);
+    background-color: $gray-300;
+    width: 100%;
+    height: 3px;
+    z-index: -1;
+  }
+  .progress__bar .dot{
+    color: $white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    background-color: $gray-300;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .5rem;
+  }
+  .progress__bar .dotbox.active .dot{
+    background-color: $primary-100;
+  }
+  .progress__bar .dotbox.active + .dotbox::before{
+    background-color: $primary-100;
+  }
+  
   .cart_list,
   .coupon{
     font-size: 1.15rem;
   }
-  .table__head,
-  .coupon__title{
+  .table__head{
       background-color: $primary-100;
+      color: $white;
+  }
+  .coupon{
+    &__head{
+      border-bottom: 2px solid $gray-300;
+      border-color: inherit;
+    }
   }
   .cart_order{
     .buttons{
@@ -40,5 +81,132 @@
       display: flex;
       align-items: center;
     }
+  }
+  .subtotal__area{
+    margin-bottom: 72px;
+  }
+  .no__product{
+    margin-bottom: 72px;
+    .shop__icon{
+      font-size: 80px;
+      color:$gray-600;
+    }
+  }
+}
+
+//購物車樣式
+.cart .table{
+  .table__head{
+    display: none;
+    @include pad {
+      display: table-header-group;
+    }
+  }
+  th, td {
+    padding: .5rem;
+    display: block;
+    @include pad {
+      padding: 1rem;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  .cart__title{
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include pad{
+      font-size: 1.25rem;
+      display: table-cell;
+    }
+    img{
+      width: 60px;
+      height: 60px;
+      @include pad {
+        display: none;
+      }
+      @include desktop_below{
+        width: 80px;
+        height: 60px;
+        display: inline-block;
+      }
+    }
+    .text{
+      margin-left: .5rem;
+      margin-right:.5rem;
+      @include pad{
+        display: inline-block;
+      }
+    }
+    .delete__icon{
+      color: $primary;
+      display: inline;
+      @include pad {
+        display: none;
+      }
+    }
+  }
+  .delete-cell{
+    display: none;
+    @include pad {
+      display: table-cell;
+    }
+  }
+  .table__head .column__2{
+    width: 160px;
+  }
+  .table__head .column__3{
+    width: 120px;
+    @include desktop_below {
+      width: 180px;
+    }
+  }
+  .qty__buttons{
+    width: 50%;
+    @include pad {
+      width: 100%;
+    }
+  }
+  .qty__buttons input{
+    text-align: center;
+  }
+  .cart__title,
+  .qty__rows{
+    border-bottom: none;
+    @include pad {
+     border-color: inherit;
+     border-style: solid;
+     border-bottom-width: 1px;
+    }
+  }
+  .price__row{
+    text-align: end;
+    @include pad {
+      text-align: left;
+    }
+  }
+  .coupon__inputs{
+    width: 100%;
+    font-size: 3rem;
+    @include pad {
+      width: 40%;
+    }
+  }
+}
+
+//header 購物車樣式
+.header .table{
+  th, td{
+    padding: .5rem;
+  }
+  .cart__title{
+    font-size: 14px;
+  }
+  .table__head .column__2{
+    width: 110px;
+  }
+  .table__head .column__3{
+    width: 110px;
   }
 }

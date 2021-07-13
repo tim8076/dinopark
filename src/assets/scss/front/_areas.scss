@@ -1,0 +1,27 @@
+
+.area__page{
+  .title{
+      background-color: $primary;
+      border-radius: 1rem;
+      color: $white;
+      padding: 2rem;
+      font-size: 1.25rem;
+      line-height: 2;
+      margin-bottom: 3rem;
+      h1{
+          border-bottom: 3px solid $white;
+          padding-bottom: 1rem;
+          margin-bottom: 1.5rem;
+      }
+  }
+  .txt{
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     padding: 1rem;
+     line-height: 1.8;
+     > p{
+       text-indent: 2rem;
+     }
+  }
+}

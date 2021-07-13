@@ -8,7 +8,17 @@
                   </div>
                 </div>
         </Loading>
-        <div class="container py-5">
+        <div class="container py-5 mh-100vh">
+            <Breadcrumb :breadcrumb="{
+              link2: {
+                title: '收藏商品',
+                link: '/dino-park/favorite'
+              },
+              link3: {
+                show: false
+              }
+            }">
+            </Breadcrumb>
             <h1 class="fs-4 border-bottom border-2 pb-2 fw-bold mb-6 text-primary">您的收藏商品</h1>
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-6"
@@ -24,7 +34,7 @@
     </div>
 </template>
 <script>
-import Card from '../../components/Card.vue'
+import Card from '../../components/front/Card.vue'
 
 export default {
   data () {

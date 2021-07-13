@@ -1,5 +1,5 @@
 <template>
-   <div class="product pb-8">
+   <div class="product pb-8 bg-color">
         <Loading v-model:active="isLoading">
                  <div class="loadingio-spinner-rolling-feeb69z48bi">
                   <div class="ldio-947txsafiul">
@@ -8,20 +8,18 @@
                   </div>
                 </div>
         </Loading>
-        <div class="container">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb my-5 fs-5">
-                    <li class="breadcrumb-item">
-                        <router-link to="/dino-park" class="text-dark">首頁</router-link>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <router-link to="/dino-park/store" class="text-dark">恐龍商城</router-link>
-                    </li>
-                    <li class="breadcrumb-item">
-                       {{ product.title }}
-                    </li>
-                </ol>
-            </nav>
+        <div class="container py-5">
+             <Breadcrumb :breadcrumb="{
+              link2: {
+                title: '恐龍商城',
+                link: '/dino-park/store'
+              },
+              link3: {
+                show: true,
+                title: product.title,
+              }
+            }">
+            </Breadcrumb>
             <div class="row ">
                 <div class="col-md-6 mb-6">
                     <img class="mb-3" :src="product.imageUrl" :alt="product.title">
@@ -131,7 +129,7 @@
    </div>
 </template>
 <script>
-import Card from '../../components/Card.vue'
+import Card from '../../components/front/Card.vue'
 export default {
   data () {
     return {
@@ -161,6 +159,9 @@ export default {
     },
     countPrice () {
       return this.product.price * this.cart.qty
+    },
+    favoriteProductsId () {
+      return this.favoriteProducts.map(product => product.id)
     }
   },
   methods: {
@@ -183,7 +184,9 @@ export default {
           if (res.data.success) {
             this.product = res.data.product
             this.cart.product_id = res.data.product.id
+            // 檢查若有商品規格，則在cart增加規格欄位
             if (this.product.productSpecs) {
+              this.cart.productSpecs = []
               this.product.productSpecs.forEach(item => {
                 this.cart.productSpecs.push({
                   type: '',
@@ -236,6 +239,9 @@ export default {
         })
     },
     addToFavorite () {
+      if (this.favoriteProductsId.includes(this.product.id)) {
+        return this.swal('此商品已在收藏清單', 'error')
+      }
       this.isLoading = true
       this.favoriteProducts.push(this.product)
       localStorage.setItem('favorite', JSON.stringify(this.favoriteProducts))

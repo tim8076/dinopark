@@ -21,7 +21,11 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
 // 匯入 bootstrap js
-import bootstrap from 'bootstrap'
+import 'bootstrap'
+
+// 匯入文字編輯器套件
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 // 匯入 表單驗證套件
 import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate'
@@ -32,13 +36,10 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 // 匯入 swiper 輪播套件
 import SwiperCore, { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-// Import Swiper styles
-import 'swiper/swiper.scss'
-import 'swiper/components/navigation/navigation.scss'
-import 'swiper/components/pagination/pagination.scss'
 
 // 匯入自製元件
 import Alert from '@/components/Alert.vue'
+import Breadcrumb from '@/components/front/Breadcrumb.vue'
 import Filters from '@/mixins/Filters.vue'
 import swal from './components/tools/Swal.vue'
 
@@ -69,6 +70,7 @@ const options = {
 
 app.component('swiper', Swiper)
 app.component('swiper-slide', SwiperSlide)
+app.component('QuillEditor', QuillEditor)
 app.component('Loading', Loading)
 app.component('Form', Form)
 app.component('Field', Field)
@@ -77,9 +79,9 @@ const emitter = mitt()
 app.config.globalProperties.emitter = emitter
 app.use(VueAxios, axios)
 app.use(VueSweetalert2, options)
-app.use(bootstrap)
 app.use(router)
 app.mount('#app')
 
 // 啟用自製元件
 app.component('Alert', Alert)
+app.component('Breadcrumb', Breadcrumb)

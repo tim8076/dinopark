@@ -70,7 +70,7 @@
 </template>
 <script>
 import Pagination from '../../components/Pagination.vue'
-import OrderModal from '../../components/OrderModal.vue'
+import OrderModal from '../../components/back/OrderModal.vue'
 export default {
   data () {
     return {
@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     openModal (order) {
-      this.tempOrder = { ...order }
+      this.tempOrder = JSON.parse(JSON.stringify(order))
       this.$refs.orderModal.openModal()
     },
     getOrders (page = 1) {

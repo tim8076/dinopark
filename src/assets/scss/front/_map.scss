@@ -1,0 +1,40 @@
+.map__page{
+    .links{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        @include pad {
+          flex-direction: row;
+        }
+    }
+    .link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 260px;
+        height:  260px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        position: relative;
+        background-position: 26% center;
+        &::before{
+           content: attr(data-title);
+           position: absolute;
+           width: 100%;
+           height: 100%;
+           border-radius: 50%;
+           left: 0;
+           top: 0;
+           display: none;
+           justify-content: center;
+           align-items: center;
+           background-color: $primary;
+           color: $white;
+           font-size: 2rem;
+        }
+        &:hover::before{
+          display: flex;
+        }
+    }
+}

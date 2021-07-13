@@ -1,13 +1,14 @@
 
 .product{
   .input-group.product-num{
-    width: 35%;
+    width: 40%;
     @include desktop-below{
       width: 25%;
     }
   }
-  .content{
-    white-space: pre;
+  .content,
+  .description{
+    white-space: pre-wrap;
     line-height: 1.75;
   }
   .product-img-sm{

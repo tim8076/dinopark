@@ -1,0 +1,61 @@
+
+.info__page{
+  .info__title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    h1{
+      display: inline-block;
+      margin: 0 auto;
+      padding: .5rem 1rem;
+      background-color: rgb(255, 243, 243);
+      z-index: 10;
+    }
+    &__line{
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      transform: translateY(-50%);
+      height: 1px;
+      background-color: $gray-600;
+      @include pad {
+         left: 20%;
+         right: 20%; 
+      }
+    } 
+  }
+  .info__type{
+    .items{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .item .btn{ 
+        margin: 0 .2rem;
+        padding: .5rem;
+        @include iphone-hz{
+          margin: 0 .5rem;
+          padding: .5rem 1.5rem;
+        }
+    }
+  }
+  .table{
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid $gray-200;
+      tr, td{
+        vertical-align: middle;
+      }
+      @include pad {
+        width: 80%;
+      }
+      &__row{
+        background-color: $primary-100;
+      }
+      tbody td{
+          background-color: $white;
+      }
+  }
+}

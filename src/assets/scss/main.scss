@@ -3,10 +3,12 @@
 @import '../scss/helpers/variables';
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/bootstrap";
-@import './helpers/global';
 
 //media query
 @import './helpers/media-query-up';
+
+// 全域設定
+@import './helpers/global'; 
 
 //後台 scss
 @import './back/login';
@@ -15,15 +17,24 @@
 //前台 scss
 @import './front/header';
 @import './front/footer';
-@import './front/store';
-@import './front/product';
-@import './front/cart';
-@import './front/checkout';
+@import './front/home';
+@import './front/store';  // 商品展示頁面
+@import './front/product'; // 單一產品頁面
+@import './front/cart';  // 購物車頁面
+@import './front/checkout'; // 結帳頁面
+@import './front/map';   // 園區地圖頁面
+@import './front/areas'; // 園區分類頁面
+@import './front/info'; // 園區資訊頁面
 
-@import './helpers/notfound';
+@import './helpers/notfound'; // 404頁面
 
 //工具 class
 @import './helpers/helper';
+
+// Import Swiper styles
+@import '~swiper/swiper.scss';
+@import '~swiper/components/navigation/navigation.scss';
+@import '~swiper/components/pagination/pagination.scss';
 
 
 

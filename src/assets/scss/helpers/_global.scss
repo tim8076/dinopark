@@ -19,3 +19,105 @@ img{
       text-decoration: underline;
   }
 }
+
+//前台-最新消息卡片元件
+.news__item {
+    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+    transition: transform .5s ease-in-out, color .5s ease-in-out; 
+    margin-bottom: 1.5rem; 
+    &:hover{
+      transform: translateY(-3%);
+      h5{
+          color: $primary;
+      }
+    }
+    .txt{
+      padding: 1rem 1rem 2rem 1rem;
+      background-color: $white;
+      color: $dark;
+        h5{
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        p{
+            margin: .5rem 0;
+        }
+        span {
+            display: inline-block;
+            padding: 0.5rem;
+            background-color: $primary;
+            color: $white;
+        }
+    }
+  }
+//前台-collapse收合區塊
+.panel{
+  &.w-80{
+    @include pad {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+  &__header{
+    padding: .3rem 1rem;
+    text-align: center;
+    background-color: rgb(255, 255, 191);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .btn{
+      padding: 0;
+    }
+  }
+  &__body{
+    padding: 1rem 2rem;
+    background-color: $white;
+    border: 1px solid rgb(255, 255, 191);
+    .list{
+      padding: 0;
+      margin: 0;
+    }
+    .list__item{
+      list-style: decimal;
+      padding-left: 1rem;
+      margin-bottom: .5rem;
+    }
+  }
+}
+//前台-麵包屑樣式 breadcrumb
+.breadcrumb .breadcrumb-item{
+  font-size: 14px;
+  @include pad {
+    font-size: 1.25rem;
+  }
+}
+
+//table
+.table-responsive{
+  overflow-x: scroll;
+  @include desktop-below{
+    overflow-x:auto
+  }
+}
+
+//園區地圖高度
+.map{
+    height: 200px;
+    @include pad {
+        height: 400px;
+    }
+    @include desktop-below {
+        height: 600px;
+    }
+}
+
+//cart title樣式
+.cart-title{
+  background-color: $primary-100;
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: $white;
+}

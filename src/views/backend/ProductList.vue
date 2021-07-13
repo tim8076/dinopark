@@ -72,7 +72,7 @@
     </div>
 </template>
 <script>
-import ProductModal from '@/components/ProductModal.vue'
+import ProductModal from '@/components/back/ProductModal.vue'
 import Pagination from '@/components/Pagination.vue'
 
 export default {
@@ -80,13 +80,8 @@ export default {
     return {
       products: [],
       tempProduct: {
-        imagesUrl: [],
-        productSpecs: [
-          {
-            type: '',
-            children: ['']
-          }
-        ]
+        imagesUrl: [''],
+        productSpecs: []
       },
       pagination: {},
       isNew: false,
@@ -102,16 +97,11 @@ export default {
     openModal (isNew, product) {
       if (isNew) {
         this.tempProduct = {
-          imagesUrl: [],
-          productSpecs: [
-            {
-              type: '',
-              children: ['']
-            }
-          ]
+          imagesUrl: [''],
+          productSpecs: []
         }
       } else {
-        this.tempProduct = { ...product }
+        this.tempProduct = JSON.parse(JSON.stringify(product))
       }
       this.isNew = isNew
       this.$refs.productModal.openModal()
@@ -160,7 +150,7 @@ export default {
             this.$http.delete(api)
               .then(res => {
                 if (res.data.success) {
-                  this.getProducts()
+                  this.getProducts(this.pagination.current_page)
                   this.swal(res.data.message)
                 } else {
                   this.swal(res.data.message, 'error')

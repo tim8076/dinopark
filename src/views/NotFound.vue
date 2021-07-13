@@ -8,7 +8,7 @@
               <h1 >404</h1>
               <p class="fs-4">噢~ 您造訪的園區施工中</p>
               <p class="fs-4">快回首頁看看吧</p>
-              <router-link to="/dino-park/store"
+              <router-link to="/dino-park/home"
                            class="btn btn-success mb-3 fw-bold fs-5">
                   回首頁
               </router-link>

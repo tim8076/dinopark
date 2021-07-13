@@ -71,7 +71,7 @@
     </div>
 </template>
 <script>
-import CouponModal from '@/components/CouponModal.vue'
+import CouponModal from '@/components/back/CouponModal.vue'
 import Pagination from '@/components/Pagination.vue'
 
 export default {
