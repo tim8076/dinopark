@@ -1,7 +1,7 @@
 <template>
   <div class="modal fade"
        id="couponModal"
-       ref="couponModal"
+       ref="modal"
        tabindex="-1"
        aria-labelledby="couponModal"
        aria-hidden="true">
@@ -83,8 +83,7 @@
   </div>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
-
+import Modal from '../../mixins/Modal.vue'
 export default {
   props: {
     tempCoupon: {
@@ -92,6 +91,8 @@ export default {
       required: true
     }
   },
+  emits: ['send-coupon'],
+  mixins: [Modal],
   data () {
     return {
       modal: {},
@@ -116,12 +117,6 @@ export default {
     }
   },
   methods: {
-    openModal () {
-      this.modal.show()
-    },
-    hideModal () {
-      this.modal.hide()
-    },
     setDueDate (e) {
       const date = e.target.value
       const timeStamp = new Date(date).getTime() / 1000
@@ -130,9 +125,6 @@ export default {
     sendCoupon () {
       this.$emit('send-coupon', this.coupon)
     }
-  },
-  mounted () {
-    this.modal = new Modal(this.$refs.couponModal)
   }
 }
 </script>

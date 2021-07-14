@@ -243,7 +243,7 @@
     </div>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
+import Modal from '../../mixins/Modal.vue'
 
 export default {
   props: {
@@ -259,7 +259,6 @@ export default {
   emits: ['send-product'],
   data () {
     return {
-      modal: {},
       tempProduct: {
         imagesUrl: [''],
         productSpecs: []
@@ -267,6 +266,7 @@ export default {
       isLoading: false
     }
   },
+  mixins: [Modal],
   computed: {
     modalTitle () {
       return this.isNew ? '新增產品' : '編輯產品'
@@ -289,12 +289,6 @@ export default {
     }
   },
   methods: {
-    openModal () {
-      this.modal.show()
-    },
-    hideModal () {
-      this.modal.hide()
-    },
     sendProduct () {
       this.$emit('send-product', this.tempProduct)
     },
@@ -356,9 +350,6 @@ export default {
         this.tempProduct.imagesUrl[lastIndex] = ''
       }
     }
-  },
-  mounted () {
-    this.modal = new Modal(this.$refs.modal)
   }
 }
 </script>

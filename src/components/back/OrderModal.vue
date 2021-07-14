@@ -1,7 +1,7 @@
 <template>
     <div class="modal fade"
          id="orderModal"
-         ref="orderModal"
+         ref="modal"
          tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -101,7 +101,7 @@
     </div>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
+import Modal from '../../mixins/Modal.vue'
 export default {
   props: {
     tempOrder: {
@@ -112,13 +112,13 @@ export default {
   emits: ['modify-order'],
   data () {
     return {
-      modal: {},
       order: {
         products: {},
         user: {}
       }
     }
   },
+  mixins: [Modal],
   computed: {
     products () {
       return Object.values(this.order.products)
@@ -130,19 +130,10 @@ export default {
     }
   },
   methods: {
-    openModal () {
-      this.modal.show()
-    },
-    hideModal () {
-      this.modal.hide()
-    },
     sendOder () {
       this.order.products = this.products
       this.$emit('modify-order', this.order)
     }
-  },
-  mounted () {
-    this.modal = new Modal(this.$refs.orderModal)
   }
 }
 </script>

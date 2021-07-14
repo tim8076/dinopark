@@ -2,9 +2,7 @@
     <div class="modal fade"
          id="articleModal"
          tabindex="-1"
-         ref="modal"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+         ref="modal">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -181,7 +179,7 @@
     </div>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
+import Modal from '../../mixins/Modal.vue'
 
 export default {
   props: {
@@ -198,7 +196,6 @@ export default {
   data () {
     return {
       isLoading: false,
-      modal: {},
       article: {
         tag: [''],
         paragraph: [
@@ -211,6 +208,7 @@ export default {
       }
     }
   },
+  mixins: [Modal],
   watch: {
     tempArticle () {
       this.article = this.tempArticle
@@ -232,12 +230,6 @@ export default {
     }
   },
   methods: {
-    openModal () {
-      this.modal.show()
-    },
-    hideModal () {
-      this.modal.hide()
-    },
     setArticleDate (e) {
       const date = e.target.value
       const timeStamp = new Date(date).getTime() / 1000
@@ -287,9 +279,6 @@ export default {
     sendArticle () {
       this.$emit('send-article', this.article)
     }
-  },
-  mounted () {
-    this.modal = new Modal(this.$refs.modal)
   }
 }
 </script>
