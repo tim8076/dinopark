@@ -78,7 +78,9 @@ export default {
   data () {
     return {
       isLoading: false,
-      tempCoupon: {},
+      tempCoupon: {
+        is_enabled: 0
+      },
       coupons: [],
       pagination: {},
       isNew: false
@@ -91,7 +93,9 @@ export default {
   methods: {
     openModal (isNew, coupon) {
       if (isNew) {
-        this.tempCoupon = {}
+        this.tempCoupon = {
+          is_enabled: 0
+        }
       } else {
         this.tempCoupon = { ...coupon }
       }

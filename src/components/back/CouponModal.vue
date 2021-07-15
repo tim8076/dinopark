@@ -55,6 +55,7 @@
                                class="form-control"
                                id="due_date"
                                placeholder="請輸入到期日"
+                               :value="$dateYYYYMMDD(this.coupon.due_date)"
                                @change="setDueDate">
                     </div>
                     <div class="form-check mb-3">

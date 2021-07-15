@@ -93,7 +93,8 @@ export default {
             title: '',
             content: ''
           }
-        ]
+        ],
+        isPublic: false
       },
       pagination: {},
       isNew: false,
@@ -115,7 +116,8 @@ export default {
               title: '',
               content: ''
             }
-          ]
+          ],
+          isPublic: false
         }
       } else {
         this.getArticle(article.id)

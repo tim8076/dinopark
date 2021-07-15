@@ -74,6 +74,7 @@
                                                 class="form-control"
                                                 id="create_at"
                                                 placeholder="請輸入文章日期"
+                                                :value="$dateYYYYMMDD(this.article.create_at)"
                                                 @change="setArticleDate">
                                         </div>
                                     </div>
@@ -204,7 +205,8 @@ export default {
             title: '',
             content: ''
           }
-        ]
+        ],
+        isPublic: false
       }
     }
   },
