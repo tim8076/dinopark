@@ -64,7 +64,7 @@
                                id="tel"
                                name="電話"
                                rules="min:9|required"
-                               v-model="user.tel"
+                               v-model.trim="user.tel"
                                :class="{ 'is-invalid': errors['電話'] }"
                                placeholder="ex: 0909111222">
                         </Field>
@@ -77,7 +77,7 @@
                                id="address"
                                name="地址"
                                rules="required"
-                               v-model.number="user.address"
+                               v-model.trim="user.address"
                                :class="{ 'is-invalid': errors['地址'] }"
                                placeholder="ex: 台北市大安區新生南路一段">
                         </Field>
