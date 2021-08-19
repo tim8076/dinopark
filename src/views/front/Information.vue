@@ -20,7 +20,7 @@
             }">
             </Breadcrumb>
             <div class="info__title">
-               <h2 class="fs-2">遊園資訊</h2>
+               <h2 class="fs-2 bg-">遊園資訊</h2>
                <div class="info__title__line"></div>
             </div>
             <div class="info__type py-3 mb-6">
