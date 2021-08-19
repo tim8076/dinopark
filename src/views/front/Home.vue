@@ -1,6 +1,6 @@
 <template>
     <div class="home__page bg-cover"
-         :style="`background-image : url(${backgroundImage[0]?.image})`">
+         :style="{ backgroundImage: 'url(' + require('@/assets/index/quote.jpg') + ')' }">
         <Loading v-model:active="isLoading">
                  <div class="loadingio-spinner-rolling-feeb69z48bi">
                   <div class="ldio-947txsafiul">
@@ -9,7 +9,7 @@
                   </div>
                 </div>
         </Loading>
-        <div class="jumbotron" v-if="jumbotronImages.length">
+        <div class="jumbotron">
             <swiper
                  :slides-per-view="1"
                 :space-between="0"
@@ -24,19 +24,19 @@
                 <swiper-slide>
                     <router-link class="jumbotron__container bg-cover"
                                   to="/dino-park/map"
-                                 :style="`background-image : url(${jumbotronImages[0].image})`">
+                                 :style="{ backgroundImage: 'url(' + require('@/assets/index/img3.png') + ')' }">
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
                     <router-link class="jumbotron__container bg-cover"
                                  to="/dino-park/news/-MeQEimfIyhBvctej3FN"
-                                 :style="`background-image : url(${jumbotronImages[1].image})`">
+                                  :style="{ backgroundImage: 'url(' + require('@/assets/index/img2.png') + ')' }">>
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
                     <router-link to="/dino-park/store/-MdHdW_48QYkLbVwfP-2"
                                  class="jumbotron__container bg-cover"
-                                 :style="`background-image : url(${jumbotronImages[2].image})`">
+                                 :style="{ backgroundImage: 'url(' + require('@/assets/index/img1.png') + ')' }">>
                     </router-link>
                 </swiper-slide>
             </swiper>
@@ -50,7 +50,7 @@
                                 <span class="material-icons">attractions</span>
                             </div>
                             <div class="txt">
-                                <h5>園區探索</h5>
+                                <h3>園區介紹</h3>
                                 <p>Event</p>
                             </div>
                         </router-link>
@@ -61,7 +61,7 @@
                                 <span class="material-icons">shopping_cart</span>
                             </div>
                             <div class="txt">
-                                <h5>恐龍商店</h5>
+                                <h3>恐龍商店</h3>
                                 <p>Giftshop</p>
                             </div>
                         </router-link>
@@ -72,7 +72,7 @@
                                 <span class="material-icons ">confirmation_number</span>
                             </div>
                             <div class="txt">
-                                <h5>線上購票</h5>
+                                <h3>線上購票</h3>
                                 <p>Tickets</p>
                             </div>
                         </router-link>
@@ -83,7 +83,7 @@
                                 <span class="material-icons ">query_builder</span>
                             </div>
                             <div class="txt">
-                                <h5>營業時間</h5>
+                                <h3>營業時間</h3>
                                 <p>Time</p>
                             </div>
                         </router-link>
@@ -94,7 +94,7 @@
                                 <span class="material-icons">directions_car</span>
                             </div>
                             <div class="txt">
-                                <h5>交通資訊</h5>
+                                <h3>交通資訊</h3>
                                 <p>Traffic</p>
                             </div>
                         </router-link>
@@ -104,13 +104,15 @@
         </div>
         <div class="news">
             <div class="container">
-                <h3 class="title">最新消息</h3>
-                <swiper :slides-per-view="1"
+                <h2 class="title fs-3">最新消息</h2>
+                <swiper :wrapperTag="'ul'"
+                        :slides-per-view="1"
                         :space-between="30"
                         :loop="true"
                         :scrollbar="{ draggable: true }"
                         :breakpoints="swiperOption">
-                        <swiper-slide v-for="article in news"
+                        <swiper-slide :tag="'li'"
+                                       v-for="article in news"
                                       :key="article.id">
                                 <NewsCard :news="article">
                                 </NewsCard>
@@ -120,64 +122,60 @@
         </div>
         <div class="areas">
             <div class="container">
-                <h3 class="title">園區導覽</h3>
-                <div class="row" v-if="areas.length">
+                <h2 class="title fs-3">園區導覽</h2>
+                <div class="row">
                     <div class="col-lg-8 mb-3">
-                        <div class="row" >
-                            <div class="col-md-6">
-                                <router-link
-                                     v-if="areas[2].paragraph"
-                                     :to="`/dino-park/areas/${areas[2].id}`"
+                        <ul class="row" >
+                            <li class="col-md-6">
+                                 <router-link
+                                     to="/dino-park/areas/herbivore"
                                      class="areas__item bg-cover mb-3"
-                                     :style="`background-image : url(${areas[2].paragraph[0].image})`">
-                                     <span class="areas__title">{{ areas[2].tag[0] }}</span>
+                                     style="background-image : url('https://upload.cc/i1/2021/08/15/NIGS91.png'">
+                                     <span class="areas__title">草食恐龍區</span>
                                  </router-link>
-                            </div>
-                            <div class="col-md-6">
+                            </li>
+                            <li class="col-md-6">
                                 <router-link
-                                     v-if="areas[1].paragraph"
-                                     :to="`/dino-park/areas/${areas[1].id}`"
+                                     to="/dino-park/areas/carnivore"
                                      class="areas__item bg-cover mb-3"
-                                     :style="`background-image : url(${areas[1].paragraph[2].image})`">
-                                     <span class="areas__title">{{ areas[1].tag[0] }}</span>
+                                    style="background-image : url('https://upload.cc/i1/2021/08/15/csKuBq.png')">
+                                     <span class="areas__title">肉食恐龍區</span>
                                 </router-link>
-                            </div>
-                            <div>
+                            </li>
+                            <li>
                                 <router-link
-                                     v-if="areas[0].paragraph"
-                                     :to="`/dino-park/areas/${areas[0].id}`"
+                                     to="/dino-park/areas/bird"
                                      class="areas__item bg-cover"
-                                     :style="`background-image : url(${areas[0].paragraph[0].image})`">
-                                     <span class="areas__title">{{ areas[0].tag[0] }}</span>
+                                     style="background-image : url('https://upload.cc/i1/2021/08/15/kvNbCF.png'">
+                                     <span class="areas__title">鳥園</span>
                                  </router-link>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-lg-4">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-12">
-                                <router-link to="/dino-park/store/-MdC_Y5waZ5yZsDM-2Nu"
-                                     v-if="activityImages[0].image"
-                                     :style="`background-image : url(${activityImages[0].image})`"
-                                     class="areas__item bg-cover mb-3 map">
+                        <ul class="row">
+                            <li class="col-md-6 col-lg-12">
+                                <router-link
+                                    to="/dino-park/store/-MdC_Y5waZ5yZsDM-2Nu"
+                                    style="background-image : url('https://upload.cc/i1/2021/08/15/Oygf7T.png')"
+                                    class="areas__item bg-cover mb-3 map">
                                     <span class="areas__title">活動購票</span>
                                 </router-link>
-                            </div>
-                            <div class="col-md-6 col-lg-12">
+                            </li>
+                            <li class="col-md-6 col-lg-12">
                                 <router-link to="/dino-park/map"
-                                     v-if="areas[0].image"
-                                     :style="`background-image : url(${areas[0].image})`"
+                                     style="background-image : url('https://upload.cc/i1/2021/08/15/1qhysL.png')"
                                      class="areas__item bg-cover mb-3 map">
                                     <span class="areas__title">園區地圖</span>
                                 </router-link>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div class="slogan">
-           <div class="text ">
+           <div class="text">
              <h3>Life finds a way</h3>
              <p>生命會找到出路</p>
              <p class="text-end">園長 約翰-哈蒙德</p>
@@ -185,7 +183,7 @@
         </div>
         <div class="comments">
             <div class="container-fluid">
-                <h3 class="title">遊客推薦</h3>
+                <h2 class="title fs-3">遊客推薦</h2>
                 <swiper
                     :slides-per-view="1"
                     :space-between="30"
@@ -207,14 +205,81 @@
                             'spaceBetween': 30
                         }
                     }">
-                    <swiper-slide v-for="image in touristImages" :key="image.content">
+                    <swiper-slide>
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="image.image" alt="image.title">
+                                :src="require('@/assets/index/tourist-1.jpg')" alt="image.title">
                             </div>
                             <div class="text">
-                                <p class="m-0">{{ image.content }}</p>
+                                <p class="m-0">
+                                   那些恐龍真是太酷了，尤其是那暴龍，超大隻的。
+                                </p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="comments__item">
+                            <div class="image">
+                                <img class="img-cover"
+                                :src="require('@/assets/index/tourist-2.jpg')" alt="image.title">
+                            </div>
+                            <div class="text">
+                                <p class="m-0">
+                                   親子恐龍區裡的恐龍都很可愛且溫馴，真的推薦家長們可以帶小朋友來同樂。
+                                </p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="comments__item">
+                            <div class="image">
+                                <img class="img-cover"
+                                :src="require('@/assets/index/tourist-3.jpg')" alt="image.title">
+                            </div>
+                            <div class="text">
+                                <p class="m-0">
+                                   園區裡的恐龍比電影裡來的真實，迅猛龍跑起來的速度超快的，一定要親自來看看。
+                                </p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="comments__item">
+                            <div class="image">
+                                <img class="img-cover"
+                                :src="require('@/assets/index/tourist-4.jpg')" alt="image.title">
+                            </div>
+                            <div class="text">
+                                <p class="m-0">
+                                   到了腕龍園區後，看到腕龍在你面前進食，它一走動，感覺地面都在搖晃。
+                                </p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="comments__item">
+                            <div class="image">
+                                <img class="img-cover"
+                                :src="require('@/assets/index/tourist-5.jpg')" alt="image.title">
+                            </div>
+                            <div class="text">
+                                <p class="m-0">
+                                   暴龍超酷的，一口就把山羊吃掉了。下次要再叫爸媽帶我來看暴龍。
+                                </p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="comments__item">
+                            <div class="image">
+                                <img class="img-cover"
+                                :src="require('@/assets/index/tourist-6.jpg')" alt="image.title">
+                            </div>
+                            <div class="text">
+                                <p class="m-0">
+                                   男朋友吵著說要來看恐龍，只好陪他來，沒想到恐龍也挺可愛的。
+                                </p>
                             </div>
                         </div>
                     </swiper-slide>
@@ -223,7 +288,7 @@
         </div>
         <div class="shop">
             <div class="container">
-                <h3 class="title">網路商城</h3>
+                <h2 class="title fs-3">網路商城</h2>
                 <swiper :slides-per-view="1"
                         :space-between="30"
                         :loop="true"
@@ -249,9 +314,6 @@ export default {
   data () {
     return {
       isLoading: false,
-      articles: [],
-      areas: [],
-      images: [],
       allproducts: [],
       recommendProducts: [],
       newsAry: [],
@@ -273,18 +335,6 @@ export default {
     NewsCard
   },
   computed: {
-    backgroundImage () {
-      return this.images.filter(img => img.title === '視差滾動背景圖')
-    },
-    jumbotronImages () {
-      return this.images.filter(img => img.title === '首頁輪播大圖')
-    },
-    activityImages () {
-      return this.images.filter(img => img.title === '首頁活動圖片')
-    },
-    touristImages () {
-      return this.images.filter(img => img.title === '首頁遊客推薦')
-    },
     news () {
       const ary = []
       this.newsAry.forEach(item => {
@@ -302,20 +352,13 @@ export default {
       this.$http.get(api)
         .then(res => {
           if (res.data.success) {
-            if (page === 1) {
-              this.newsAry = res.data.articles
-              page += 1
-              this.getArticles(page)
-            } else {
-              this.articles = res.data.articles
-              this.images = this.articles.find(article => article.title === '園區圖片').paragraph
-              this.areas = this.articles.filter(article => article.title === '園區分類')
-            }
+            this.newsAry = res.data.articles
           } else {
             this.swal(res.data.message)
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     getRandomInt (max) {
       return Math.floor(Math.random() * max)
@@ -343,6 +386,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     addToCart (id) {
       this.isLoading = true
@@ -362,6 +406,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     }
   },
   created () {

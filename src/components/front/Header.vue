@@ -2,11 +2,11 @@
     <header class="header text-white"
             :class="{ 'small' : scrollSmallMenu }">
        <div class="container">
-           <div class="header__logo">
-              <router-link to="/dino-park/home" >
-                  <img src="../../assets/logo/dinopark.png" alt="dinopark">
+           <h1 class="header__logo">
+              <router-link to="/dino-park/home" class="bg-cover hide-text">
+                   戴諾恐龍公園
               </router-link>
-           </div>
+           </h1>
            <ul class="header__links"
                :class="{ 'active' : isOpen }">
                <li class="header__link">
@@ -54,10 +54,10 @@
                      </li>
                      <li>
                         <router-link class="sub-link"
-                                     :to="`/dino-park/areas/${area.id}`"
-                                     v-for="area in areas"
-                                     :key="area.id">
-                           {{ area.tag[0] }}
+                                     :to="`${area.link}`"
+                                     v-for="area in areasLinks"
+                                     :key="area.title">
+                               {{ area.title }}
                         </router-link>
                      </li>
                   </ul>
@@ -114,9 +114,18 @@ export default {
       menuToggleIndex: 0,
       openCart: false,
       cartNum: 0,
-      articles: [
+      areasLinks: [
         {
-          tag: []
+          title: '草食恐龍區',
+          link: '/dino-park/areas/herbivore'
+        },
+        {
+          title: '肉食恐龍區',
+          link: '/dino-park/areas/carnivore'
+        },
+        {
+          title: '鳥園',
+          link: '/dino-park/areas/bird'
         }
       ],
       scrollSmallMenu: false
@@ -124,11 +133,6 @@ export default {
   },
   components: {
     Cart
-  },
-  computed: {
-    areas () {
-      return this.articles.filter(article => article.title === '園區分類')
-    }
   },
   methods: {
     openToggle () {
@@ -144,17 +148,6 @@ export default {
     },
     setCartNum (num) {
       this.cartNum = num
-    },
-    getArticles (page = 2) {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles?page=${page}`
-      this.$http.get(api)
-        .then(res => {
-          if (res.data.success) {
-            this.articles = res.data.articles
-          } else {
-            this.swal(res.data.message)
-          }
-        })
     },
     scrollToSmallMeun () {
       const scrollY = window.scrollY
@@ -174,7 +167,6 @@ export default {
         this.isOpen = false
       }
     )
-    this.getArticles()
   },
   mounted () {
     window.addEventListener('scroll', this.scrollToSmallMeun)

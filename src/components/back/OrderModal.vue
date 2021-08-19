@@ -28,6 +28,16 @@
                             <p>訂單金額:
                               <span class="ms-3">NT$ {{ $toCurrency(Math.round(order.total)) }}</span>
                             </p>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input"
+                                      type="checkbox"
+                                      v-model="order.is_paid"
+                                      :value="order.is_paid"
+                                      id="is_paid">
+                                <label class="form-check-label" for="is_paid">
+                                  是否付款
+                                </label>
+                             </div>
                           </div>
                           <div class="col-md-6 mb-3">
                               <label for="name" class="form-label">訂購人姓名</label>
@@ -46,7 +56,7 @@
                               <label for="tel" class="form-label">電話</label>
                               <Field  id="tel"
                                       name="電話"
-                                      type="number"
+                                      type="tel"
                                       class="form-control"
                                       :class="{ 'is-invalid': errors['電話'] }"
                                       placeholder="請輸入電話"

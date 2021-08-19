@@ -30,8 +30,16 @@ const routes = [
         component: () => import('@/views/front/ParkMap.vue')
       },
       {
-        path: 'areas/:id',
-        component: () => import('@/views/front/Area.vue')
+        path: 'areas/herbivore',
+        component: () => import('@/views/front/AreaHerbivore.vue')
+      },
+      {
+        path: 'areas/carnivore',
+        component: () => import('@/views/front/AreaCarnivore.vue')
+      },
+      {
+        path: 'areas/bird',
+        component: () => import('@/views/front/AreaBird.vue')
       },
       {
         path: 'store',
@@ -101,7 +109,7 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior (savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {

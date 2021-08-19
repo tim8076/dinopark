@@ -103,6 +103,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     modifyOrder (order) {
       this.isLoading = true
@@ -120,6 +121,7 @@ export default {
           this.isLoading = false
           this.$refs.orderModal.hideModal()
         })
+        .catch(err => console.log(err))
     },
     deleteOrder (id) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
@@ -137,6 +139,7 @@ export default {
                 }
                 this.isLoading = false
               })
+              .catch(err => console.log(err))
           }
         })
     },
@@ -156,6 +159,7 @@ export default {
                 }
                 this.isLoading = false
               })
+              .catch(err => console.log(err))
           }
         })
     }

@@ -9,7 +9,7 @@
     @include desktop-below {
        background-color: rgba(0,0,0,.7);
     }
-    .header__logo img{
+    .header__logo a{
       width: 80px;
       height: 60px;
     }
@@ -36,7 +36,9 @@
   .sub-link{
     display: block;
   }
-  &__logo img{
+  &__logo a{
+    display: block;
+    background-image: url('assets/logo/dinopark.png');
     width: 80px;
     height: 60px;
     @include pad {

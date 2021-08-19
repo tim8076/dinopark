@@ -20,15 +20,19 @@
                            v-model="user.username"
                            id="email"
                            placeholder="name@example.com"
+                           autocomplete="username"
                            required>
                 </div>
                 <div class="mb-8">
-                    <label for="password" class="form-label">密碼</label>
+                    <label for="password" class="form-label">
+                          密碼
+                    </label>
                     <input type="password"
                            class="form-control"
                            v-model="user.password"
                            id="password"
                            placeholder="password"
+                           autocomplete="current-password"
                            required>
                 </div>
                 <button type="submit"
@@ -67,6 +71,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     }
   }
 }

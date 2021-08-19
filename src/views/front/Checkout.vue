@@ -49,7 +49,12 @@
                             </span>
                           </td>
                           <td>{{ product.qty }}</td>
-                          <td>{{ $toCurrency(product.total) }}</td>
+                          <td>{{ $toCurrency(product.total)}}</td>
+                        </tr>
+                        <tr class="text-primary">
+                          <td colspan="2"></td>
+                          <td >折抵</td>
+                          <td>{{ $toCurrency(this.discountTotal) }}</td>
                         </tr>
                         <tr>
                           <td colspan="4" class="text-primary fw-bold fs-5 text-end pe-4">
@@ -100,7 +105,7 @@
                         <tr>
                           <td>
                             <button class="btn btn-primary d-block ms-auto"
-                                    @click="checkOut">確認付款
+                                    @click="checkout">確認付款
                             </button>
                           </td>
                         </tr>
@@ -114,13 +119,13 @@
          <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="p-6">
-                <h2 class="fs-1 fw-bolder text-info d-flex justify-content-center align-items-center">
+                <h2 class="fs-1 fw-bolder text-primary-light d-flex justify-content-center align-items-center">
                   <span class="material-icons md-48">check_circle</span>
                   付款成功
                 </h2>
                 <div class="info-area border-bottom mb-6">
                   <p class="fs-4 text-center">感謝您的購買，您訂單將於三日內配送</p>
-                  <h4 class="mb-3 fw-bold">購買品項</h4>
+                  <h3 class="mb-3 fw-bold fs-4">購買品項</h3>
                   <p v-for="product in productList" :key="product.id">
                     {{ product.product.title }}
                     <span v-for="spec in product.productSpecs"
@@ -131,11 +136,11 @@
                   </p>
                 </div>
                 <div class="info-area border-bottom mb-6">
-                  <h4 class="mb-3 fw-bold">運送地址</h4>
+                  <h3 class="mb-3 fw-bold fs-4">運送地址</h3>
                   <p class="mb-2">{{ order.user.address }}</p>
                 </div>
                 <div class="info-area border-bottom mb-6">
-                  <h4 class="mb-3 fw-bold">付款資訊</h4>
+                  <h3 class="mb-3 fw-bold fs-4">付款資訊</h3>
                   <p class="mb-2">地址: {{ order.user.address }}</p>
                   <p class="mb-2">姓名: {{ order.user.name }}</p>
                   <p>付款方式: {{ order.user.payment_method }}</p>
@@ -167,6 +172,14 @@ export default {
   computed: {
     productList () {
       return Object.values(this.order.products)
+    },
+    discountTotal () {
+      let discount = 0
+      this.productList.forEach(product => {
+        const num = product.total - product.final_total
+        discount += num
+      })
+      return discount
     }
   },
   methods: {
@@ -182,8 +195,9 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
-    checkOut () {
+    checkout () {
       this.isLoading = true
       const id = this.order.id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${id}`
@@ -198,6 +212,7 @@ export default {
             this.isLoading = false
           }, 500)
         })
+        .catch(err => console.log(err))
     }
   },
   created () {

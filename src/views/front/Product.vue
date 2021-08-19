@@ -11,7 +11,7 @@
         <div class="container py-5">
              <Breadcrumb :breadcrumb="{
               link2: {
-                title: '恐龍商城',
+                title: '恐龍商店',
                 link: '/dino-park/store'
               },
               link3: {
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-md-6  px-6 px-md-8">
-                    <h1 class="fs-2 fw-bold mb-3 mb-md-6">{{ product.title }}</h1>
+                    <h2 class="fs-2 fw-bold mb-3 mb-md-6">{{ product.title }}</h2>
                     <p class="mb-3 mb-md-4 description">{{ product.description }}</p>
                     <p class="mb-3 mb-md-4 content fw-bold ">{{ product.content }}</p>
                     <div class="d-flex align-items-center me-3 mb-3"
@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="notes mb-6">
-              <h4 class="border-bottom border-2 pb-2 fw-bold mb-3 text-primary">購物須知</h4>
+              <h3 class="border-bottom border-2 fs-4 pb-2 fw-bold mb-3 text-primary">購物須知</h3>
               <ol class="lh-lg text-light-300">
                 <li>下單後，會有專人與您聯繫後續配送事宜</li>
                 <li>訂購前請務必確認商品種類、尺寸</li>
@@ -96,7 +96,7 @@
               </ol>
             </div>
             <div class="recommend">
-              <h4 class="border-bottom border-2 pb-2 fw-bold mb-6 text-primary">猜您也喜歡...</h4>
+              <h3 class="border-bottom border-2 pb-2 fs-4 fw-bold mb-6 text-primary">猜您也喜歡...</h3>
               <swiper
                 :slides-per-view="1"
                 :space-between="30"
@@ -155,7 +155,12 @@ export default {
       return content.replaceAll('\n', '<br/>')
     },
     recommendProducts () {
-      return this.allProducts.filter(item => item.category === this.product.category)
+      const id = this.$route.params.id
+      const products = this.allProducts.filter(item => item.category === this.product.category)
+      const recommendProducts = products.filter(product => {
+        return product.id !== id
+      })
+      return recommendProducts
     },
     countPrice () {
       return this.product.price * this.cart.qty
@@ -175,6 +180,7 @@ export default {
             this.swal(res.data.message, 'error')
           }
         })
+        .catch(err => console.log(err))
     },
     getProduct (id) {
       this.isLoading = true
@@ -199,6 +205,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     changeNum (num) {
       this.cart.qty += num
@@ -237,6 +244,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     addToFavorite () {
       if (this.favoriteProductsId.includes(this.product.id)) {
@@ -261,7 +269,7 @@ export default {
     // 偵聽 params 改變後，重新getProduct
     this.$watch(
       () => this.$route.params,
-      (toParams, previousParams) => {
+      () => {
         const id = this.$route.params.id
         if (!id) return
         this.getProduct(id)

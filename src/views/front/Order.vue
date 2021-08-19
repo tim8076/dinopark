@@ -114,10 +114,12 @@
                             <span class="material-icons">arrow_back_ios</span>
                             回購物車
                         </router-link>
-                        <button class="btn btn-primary"
+                        <div class="cursor-not-allowed">
+                           <button class="btn btn-primary"
                                 :class="{ 'disabled': !isValid }"
                                 type="submit">送出訂單
-                        </button>
+                           </button>
+                        </div>
                     </div>
                  </Form>
              </div>
@@ -165,6 +167,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     }
   }
 }

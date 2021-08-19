@@ -20,7 +20,7 @@
           }
         }">
         </Breadcrumb>
-        <h1 class="fs-2 mb-3 fw-bold">{{ article.title }}</h1>
+        <h2 class="fs-2 mb-3 fw-bold">{{ article.title }}</h2>
         <p class="d-flex align-items-center border-bottom border-2 pb-3">
           <span class="material-icons me-3">today</span>
           {{ $dateFormat(article.create_at) }}
@@ -59,6 +59,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     }
   },
   created () {

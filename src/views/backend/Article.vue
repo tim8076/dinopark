@@ -119,11 +119,11 @@ export default {
           ],
           isPublic: false
         }
+        this.$refs.articleModal.openModal()
       } else {
         this.getArticle(article.id)
       }
       this.isNew = isNew
-      this.$refs.articleModal.openModal()
     },
     getArticle (id) {
       this.isLoading = true
@@ -132,11 +132,13 @@ export default {
         .then(res => {
           if (res.data.success) {
             this.tempArticle = JSON.parse(JSON.stringify(res.data.article))
+            this.$refs.articleModal.openModal()
           } else {
             this.swal(res.data.messages, 'error')
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     getArticles (page = 1) {
       this.isLoading = true
@@ -152,6 +154,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     updateArticle (article) {
       this.isLoading = true
@@ -174,6 +177,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     deleteArticle (id) {
       this.swalComfirm('確認刪除文章?')
@@ -193,6 +197,7 @@ export default {
               })
           }
         })
+        .catch(err => console.log(err))
     }
   },
   created () {

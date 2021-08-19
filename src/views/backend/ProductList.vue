@@ -16,7 +16,6 @@
         <div class="container p-5 border border-primary">
             <div class="d-flex justify-content-end align-items-center mb-3">
               <button class="btn btn-info"
-                      data-bs-target="#productModal"
                       type="button"
                       @click="openModal(true)">
                   建立新產品
@@ -120,6 +119,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     updateProduct (tempProduct) {
       this.isLoading = true
@@ -140,6 +140,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     deleteProduct (product) {
       this.swalComfirm(`確認刪除 ${product.title}?`)
@@ -157,6 +158,7 @@ export default {
                 }
                 this.isLoading = false
               })
+              .catch(err => console.log(err))
           }
         })
     }

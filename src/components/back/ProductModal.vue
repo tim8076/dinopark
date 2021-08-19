@@ -132,37 +132,39 @@
                                   :key="spec">
                                 <input  type="text"
                                         class="form-control mb-3 text-primary fw-bold"
-                                        v-model="spec.type"
+                                        v-model.trim="spec.type"
                                         placeholder="規格種類: ex: 顏色">
                                 <input  type="text"
                                         class="form-control mb-3"
                                         v-for="(item, index2) in spec.children"
                                         v-model.trim="spec.children[index2]"
-                                        :key="item"
+                                        :key="index2"
                                         placeholder="規格 ex: 藍色、紅色、綠色">
-                                  <button  v-if="tempProduct.productSpecs[index].children[
+                                  <div class="d-flex align-items-center mb-6">
+                                     <button  v-if="tempProduct.productSpecs[index].children[
                                            tempProduct.productSpecs[index].children.length - 1] &&
                                            tempProduct.productSpecs[index].type"
-                                           class="btn btn-outline-info me-3 mb-6 d-inline-block"
+                                           class="btn btn-outline-info me-3 d-inline-block"
                                            type="button"
                                           @click="addSpecInput(index)">
                                           新增欄位
-                                  </button>
-                                  <button v-else
-                                          class="btn btn-outline-primary mb-6"
-                                          type="button"
-                                          @click="deleteSpecInput(index)">
-                                          刪除欄位
-                                  </button>
+                                      </button>
+                                      <button v-else
+                                              class="btn btn-outline-primary me-3"
+                                              type="button"
+                                              @click="deleteSpecInput(index)">
+                                              刪除欄位
+                                      </button>
+                                      <button class="btn btn-primary"
+                                              @click="deleteSpecType(index)">
+                                              刪除規格種類
+                                      </button>
+                                  </div>
                               </div>
                               <div>
                                 <button class="btn btn-info me-3 mb-3"
                                       @click="addSpecType">
                                         新增規格種類
-                                </button>
-                                <button class="btn btn-primary mb-3"
-                                        @click="deleteSpecType">
-                                        刪除規格種類
                                 </button>
                               </div>
                             </template>
@@ -175,13 +177,13 @@
                                   class="mt-0">
                                 <input  type="text"
                                         class="form-control text-primary fw-bold mb-3"
-                                        v-model="spec.type"
+                                        v-model.trim="spec.type"
                                         placeholder="輸入規格種類: ex: 顏色">
                                 <input  type="text"
                                         class="form-control mb-3"
                                         v-for="(item, index) in spec.children"
-                                        v-model="spec.children[index]"
-                                        :key="item"
+                                        v-model.trim="spec.children[index]"
+                                        :key="index"
                                         placeholder="輸入規格 ex: 藍色、紅色、綠色">
                               </div>
                               <div>
@@ -314,9 +316,8 @@ export default {
         children: ['']
       })
     },
-    deleteSpecType () {
-      const lastIndex = this.tempProduct.productSpecs.length - 1
-      this.tempProduct.productSpecs.splice(lastIndex, 1)
+    deleteSpecType (index) {
+      this.tempProduct.productSpecs.splice(index, 1)
     },
     upLoadImage (image, e) {
       this.isLoading = true
@@ -338,6 +339,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     addImage () {
       this.tempProduct.imagesUrl.push('')

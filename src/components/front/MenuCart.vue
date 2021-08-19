@@ -56,7 +56,16 @@
                               </button>
                           </div>
                       </td>
-                      <td class="price__row">NT$ {{ $toCurrency(Math.round(cart.final_total)) }}</td>
+                      <td class="price__row">
+                        <p class="mb-0"
+                           :class="{ 'text-decoration-line-through' : couponed }">
+                          NT$ {{ $toCurrency(Math.round(cart.total)) }}
+                        </p>
+                        <p class="text-primary mb-0"
+                           v-if="couponed">
+                          NT$ {{ $toCurrency(Math.round(cart.final_total)) }}
+                        </p>
+                      </td>
                       <td class="delete-cell">
                         <a href="#"
                             @click.prevent="deleteCartItem(cart.id, index)">
@@ -86,6 +95,11 @@
                                 type="button"
                                 id="button-addon2"
                                 @click="addCoupon">
+                                <div  class="spinner-border text-primary spinner-border-sm"
+                                      role="status"
+                                      v-if="isCouponing">
+                                  <span class="visually-hidden">Loading...</span>
+                                </div>
                                 套用
                         </button>
                       </div>
@@ -128,10 +142,13 @@ export default {
   data () {
     return {
       cartList: [],
+      total: 0,
       finalTotal: 0,
       loadingIndex: null,
       couponCode: '',
-      useCoupon: false
+      isCouponing: false,
+      useCoupon: false,
+      couponed: false
     }
   },
   methods: {
@@ -142,12 +159,14 @@ export default {
           if (res.data.success) {
             this.cartList = res.data.data.carts
             this.finalTotal = res.data.data.final_total
+            this.total = res.data.data.total
             this.$emit('update-num', this.cartList.length)
             this.sendTotal()
           } else {
             this.swal(res.data.message, 'error')
           }
         })
+        .catch(err => console.log(err))
     },
     deleteCartItem (id, index) {
       this.loadingIndex = index
@@ -162,6 +181,7 @@ export default {
           }
           this.loadingIndex = null
         })
+        .catch(err => console.log(err))
     },
     deleteAllCartItems () {
       this.swalComfirm('確定清空購物車?')
@@ -177,6 +197,7 @@ export default {
                   this.swal(res.data.message, 'error')
                 }
               })
+              .catch(err => console.log(err))
           }
         })
     },
@@ -199,8 +220,10 @@ export default {
           }
           this.loadingIndex = null
         })
+        .catch(err => console.log(err))
     },
     addCoupon () {
+      this.isCouponing = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/coupon`
       this.$http.post(api, {
         data: {
@@ -211,18 +234,30 @@ export default {
           if (res.data.success) {
             this.getCartList()
             this.swal(res.data.message)
+            this.couponed = true
           } else {
             this.swal(res.data.message, 'error')
           }
+          this.isCouponing = false
         })
+        .catch(err => console.log(err))
     },
     sendTotal () {
-      this.$emit('send-total', this.finalTotal, this.cartList.length)
+      this.$emit('send-total',
+        this.finalTotal,
+        this.cartList.length,
+        this.total,
+        this.couponed)
     }
   },
   created () {
     this.getCartList()
     this.emitter.on('add-cart', () => {
+      this.getCartList()
+    })
+  },
+  unmounted () {
+    this.emitter.off('add-cart', () => {
       this.getCartList()
     })
   }

@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col-md-7">
                 <div class="coupon">
-                    <h4 class="cart-title">可使用優惠券</h4>
+                    <h2 class="cart-title">可使用優惠券</h2>
                     <div class="coupon__list py-1 px-3 border ">
                       <table class="table">
                         <thead class="coupon__head">
@@ -59,12 +59,24 @@
               </div>
               <div class="col-md-5">
                 <div class="subtotal">
-                    <h4 class="cart-title">訂單小計</h4>
+                    <h2 class="cart-title">訂單小計</h2>
                     <div class="subtotal__list py-1 px-3 border">
                       <table class="table">
                         <tbody>
                             <tr>
                               <td>小計</td>
+                              <td class="text-end">
+                                NT$ {{ $toCurrency(Math.round(this.total)) }}元
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>折扣</td>
+                              <td class="text-end">
+                                NT$ {{ $toCurrency(Math.round(this.discount)) }}元
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>合計</td>
                               <td class="text-end">
                                 NT$ {{ $toCurrency(Math.round(this.finalTotal)) }}元
                               </td>
@@ -92,17 +104,17 @@
              </div>
           </div>
           <div class="mb-6">
-            <h4 class="border-bottom border-2 pb-2 fw-bold mb-6 text-primary">推薦商品</h4>
+            <h3 class="border-bottom border-2 fs-3 pb-2 fw-bold mb-6 text-primary">推薦商品</h3>
             <swiper :slides-per-view="1"
-                        :space-between="30"
-                        :loop="true"
-                        :scrollbar="{ draggable: true }"
-                        :breakpoints="swiperOption"
-                        class="mb-6">
+                    :space-between="30"
+                    :loop="true"
+                    :scrollbar="{ draggable: true }"
+                    :breakpoints="swiperOption"
+                    class="mb-6">
                 <swiper-slide v-for="product in recommendProducts"
                               :key="product.id">
                       <Card :product-data="product"
-                        @add-cart="addToCart">
+                            @add-cart="addToCart">
                       </Card>
                 </swiper-slide>
             </swiper>
@@ -118,8 +130,10 @@ export default {
   data () {
     return {
       isLoading: false,
+      useCoupon: false,
       allProducts: [],
       recommendProducts: [],
+      total: 0,
       finalTotal: 0,
       cartLength: 0,
       swiperOption: {
@@ -138,6 +152,11 @@ export default {
     Cart,
     Card
   },
+  computed: {
+    discount () {
+      return this.total - this.finalTotal
+    }
+  },
   methods: {
     getCartList () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
@@ -150,6 +169,7 @@ export default {
             this.swal(res.data.message, 'error')
           }
         })
+        .catch(err => console.log(err))
     },
     getAllProducts () {
       this.isLoading = true
@@ -164,6 +184,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     getRandomInt (max) {
       return Math.floor(Math.random() * max)
@@ -196,10 +217,13 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
-    updateTotal (total, cartLength) {
-      this.finalTotal = total
+    updateTotal (fianlTotal, cartLength, total, useCoupon) {
+      this.finalTotal = fianlTotal
       this.cartLength = cartLength
+      this.total = total
+      this.useCoupon = useCoupon
     }
   },
   created () {

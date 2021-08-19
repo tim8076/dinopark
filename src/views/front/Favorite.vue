@@ -19,13 +19,14 @@
               }
             }">
             </Breadcrumb>
-            <h1 class="fs-4 border-bottom border-2 pb-2 fw-bold mb-6 text-primary">您的收藏商品</h1>
+            <h2 class="fs-4 border-bottom border-2 pb-2 fw-bold mb-6 text-primary">您的收藏商品</h2>
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-6"
                      v-for="product in favoriteProducts"
                      :key="product.id">
                     <Card  :favorite="true"
                            :product-data="product"
+                           @add-cart="addToCart"
                            @remove-favorite="removeFavorite">
                     </Card>
                 </div>
@@ -61,6 +62,26 @@ export default {
         this.isLoading = false
         this.swal('已取消收藏')
       }, 500)
+    },
+    addToCart (id) {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      this.$http.post(api, {
+        data: {
+          product_id: id,
+          qty: 1
+        }
+      })
+        .then(res => {
+          if (res.data.success) {
+            this.swal(res.data.message)
+            this.emitter.emit('add-cart')
+          } else {
+            this.swal(res.data.message, 'error')
+          }
+          this.isLoading = false
+        })
+        .catch(err => console.log(err))
     }
   },
   mounted () {

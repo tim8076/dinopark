@@ -86,8 +86,9 @@
                                     <div class="row">
                                         <div class="col-md-4 mb-3"
                                              v-for="(tag, index) in article.tag"
-                                             :key="tag">
-                                           <input type="text"
+                                             :key="index">
+                                           <input
+                                            type="text"
                                             class="form-control"
                                             v-model.trim="article.tag[index]"
                                             placeholder="輸入標籤">
@@ -107,10 +108,12 @@
                                 </div>
                                 <hr>
                                 <div class="mb-3">
-                                    <label class="form-label">
+                                    <label class="form-label"
+                                           for="mainArticle">
                                         輸入主文內容 <span class="text-primary">*</span>
                                     </label>
-                                    <textarea class="form-control"
+                                    <textarea id="mainArticle"
+                                              class="form-control"
                                               rows="8"
                                               v-model="article.content">
                                     </textarea>
@@ -120,20 +123,33 @@
                                         <template v-for="(paragraph, index) in article.paragraph"
                                                   :key="paragraph">
                                             <div class="col-lg-4 mb-md-3">
-                                                <label class="form-label">上傳段落圖片</label>
+                                                <label class="form-label"
+                                                       for="paraImage">
+                                                  上傳段落圖片
+                                                </label>
                                                 <input type="file"
+                                                    id="paraImage"
                                                     class="form-control mb-3"
                                                     @change="upLoadImage(index, $event)">
                                                 <img  class="img-fluid mb-3"
                                                     :src="article.paragraph[index].image">
                                             </div>
                                             <div class="col-lg-8 mb-md-3">
-                                                <label class="form-label">輸入段落標題</label>
+                                                <label class="form-label"
+                                                       for="paraTitle">
+                                                  輸入段落標題
+                                                </label>
                                                 <input type="text"
+                                                       id="paraTitle"
                                                        class="form-control mb-3"
                                                        v-model="article.paragraph[index].title">
-                                                <label class="form-label">輸入段落文字</label>
-                                                <textarea class="form-control"
+                                                <label class="form-label"
+                                                       for="paraText">
+                                                  輸入段落文字
+                                                </label>
+                                                <textarea
+                                                        id="paraText"
+                                                        class="form-control"
                                                         rows="8"
                                                         v-model="article.paragraph[index].content">
                                                 </textarea>
@@ -257,6 +273,7 @@ export default {
           }
           this.isLoading = false
         })
+        .catch(err => console.log(err))
     },
     addTagInput () {
       this.article.tag.push('')

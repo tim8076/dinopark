@@ -1,9 +1,19 @@
 <template>
     <div class="dashboard">
+       <Loading v-model:active="isLoading">
+              <div class="loadingio-spinner-rolling-feeb69z48bi">
+              <div class="ldio-947txsafiul">
+                <div>
+                </div>
+              </div>
+            </div>
+      </Loading>
        <header class="mb-3">
           <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3 fw-bold">
-            <div class="container ">
-              <router-link class="navbar-brand" to="/dino-park/home">戴樂恐龍公園</router-link>
+            <div class="container">
+              <h1>
+                 <router-link class="navbar-brand d-block fw-bold" to="/dino-park/home">戴樂恐龍公園</router-link>
+              </h1>
               <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -33,13 +43,15 @@
             </div>
           </nav>
        </header>
-       <router-view></router-view>
+       <router-view v-if="check"></router-view>
     </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      check: false,
+      isLoading: false
     }
   },
   methods: {
@@ -54,19 +66,25 @@ export default {
             this.swal(res.data.message, 'error')
           }
         })
+        .catch(err => console.log(err))
     },
     checkLogin () {
+      this.isLoading = true
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)jurassicToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+      this.$http.defaults.headers.common.Authorization = token
       const api = `${process.env.VUE_APP_API}/api/user/check`
       this.$http.post(api).then(res => {
-        if (!res.data.success) {
+        if (res.data.success) {
+          this.check = true
+        } else {
           this.$router.push('/login')
         }
+        this.isLoading = false
       })
+        .catch(err => console.log(err))
     }
   },
   created () {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)jurassicToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    this.$http.defaults.headers.common.Authorization = token
     this.checkLogin()
   }
 }
