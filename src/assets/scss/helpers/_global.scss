@@ -52,8 +52,8 @@ img{
             transition: all .5s ease-in-out; 
             display: inline-block;
             padding: 0.5rem;
-            background-color: $gray-200;
-            color: $dark;
+            background-color: $primary-100;
+            color: $white;
         }
     }
   }
@@ -93,7 +93,7 @@ img{
 }
 //前台-麵包屑樣式 breadcrumb
 .breadcrumb .breadcrumb-item{
-  font-size: 14px;
+  font-size: 1rem;
   @include pad {
     font-size: 1.25rem;
   }

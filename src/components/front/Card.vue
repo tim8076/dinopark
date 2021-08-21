@@ -3,7 +3,7 @@
         <div class="d-flex flex-column justify-content-between h-100">
             <div class="link-area">
               <router-link :to="`/dino-park/store/${product.id}`" class="link">
-                查看更多
+                <span class="d-none d-lg-block">查看更多</span>
               </router-link>
               <div class="img">
                 <img class="img-fluid" :src="product.imageUrl" :alt="product.title">

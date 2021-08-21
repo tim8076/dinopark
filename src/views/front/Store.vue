@@ -1,5 +1,5 @@
 <template>
-   <div class="store pb-8 bg-color">
+   <div class="store pb-8">
       <Loading v-model:active="isLoading">
         <div class="outter-spinner">
             <div class="inner-spinner">

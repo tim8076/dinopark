@@ -32,7 +32,9 @@
                        v-slot="{ errors }"
                        @submit="sendOrder">
                     <div class="mb-3">
-                        <label for="name" class="form-label">姓名</label>
+                        <label for="name" class="form-label">
+                          姓名 <span class="text-primary fw-bold">*</span>
+                        </label>
                         <Field type="text"
                                class="form-control"
                                id="name"
@@ -44,7 +46,9 @@
                         <ErrorMessage name="姓名" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">信箱</label>
+                        <label for="email" class="form-label">
+                          信箱 <span class="text-primary fw-bold">*</span>
+                        </label>
                         <Field type="email"
                                class="form-control"
                                id="email"
@@ -56,7 +60,9 @@
                         <ErrorMessage name="信箱" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
-                        <label for="tel" class="form-label">電話</label>
+                        <label for="tel" class="form-label">
+                          電話 <span class="text-primary fw-bold">*</span>
+                        </label>
                         <Field type="tel"
                                class="form-control"
                                id="tel"
@@ -68,7 +74,9 @@
                         <ErrorMessage name="電話" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">地址</label>
+                        <label for="address" class="form-label">
+                          地址 <span class="text-primary fw-bold">*</span>
+                        </label>
                         <Field type="text"
                                class="form-control"
                                id="address"
@@ -80,7 +88,9 @@
                         <ErrorMessage name="地址" class="invalid-feedback" />
                     </div>
                     <div class="mb-6">
-                        <label for="payment_method" class="form-label">付款方式</label>
+                        <label for="payment_method" class="form-label">
+                          付款方式 <span class="text-primary fw-bold">*</span>
+                        </label>
                         <Field id="payment_method"
                                name="付款方式"
                                class="form-control"

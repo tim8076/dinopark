@@ -19,21 +19,49 @@
                 :scrollbar="swiperSetting.scrollbar"
                 :autoplay="swiperSetting.autoplay">
                 <swiper-slide>
-                    <router-link class="jumbotron__container bg-cover"
+                    <router-link class="jumbotron__container bg-cover text-light
+                                        d-flex justify-content-center align-items-center
+                                        flex-column"
                                   to="/dino-park/map"
-                                 :style="{ backgroundImage: `url(${require('@/assets/image/index/img3.png')})`}">
+                                 :style="{ backgroundImage: `url(${require('@/assets/image/logo/cart-title.jpg')})`}">
+                        <h2 class="display-4 text-center p-3 mb-3">
+                          歡迎光臨<br>戴樂恐龍公園
+                        </h2>
+                        <div class="btn btn-primary btn-lg fs-4
+                                    d-flex align-items-center">
+                          探險去
+                          <span class="material-icons ms-1">arrow_forward</span>
+                        </div>
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
-                    <router-link class="jumbotron__container bg-cover"
+                    <router-link class="jumbotron__container bg-cover text-light
+                                        d-flex justify-content-center align-items-center
+                                        flex-column"
                                  to="/dino-park/news/-MeQEimfIyhBvctej3FN"
-                                :style="{ backgroundImage: `url(${require('@/assets/image/index/img2.png')})` }">
+                                :style="{ backgroundImage: `url(${require('@/assets/image/index/img2.jpg')})` }">
+                        <h2 class="display-4 text-center p-3 mb-3">
+                          支持恐龍復育計畫
+                        </h2>
+                        <div class="btn btn-primary btn-lg fs-4
+                                    d-flex align-items-center">
+                          看詳細計畫
+                        </div>
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
                     <router-link to="/dino-park/store/-MdHdW_48QYkLbVwfP-2"
-                                class="jumbotron__container bg-cover"
+                                class="jumbotron__container bg-cover text-light d-flex
+                                       justify-content-center align-items-center flex-column"
                                 :style="{ backgroundImage: `url(${require('@/assets/image/index/img1.png')})`}">
+                        <h2 class="display-4 text-center p-3 mb-3">
+                          文創商品88折
+                        </h2>
+                        <div class="btn btn-primary btn-lg fs-4
+                                    d-flex align-items-center">
+                          搶購去
+                          <span class="material-icons ms-1">arrow_forward</span>
+                        </div>
                     </router-link>
                 </swiper-slide>
             </swiper>
@@ -66,7 +94,7 @@
                     <li class="infos__item">
                         <router-link to="/dino-park/store/-MeVDdkoCE_GF9omo2XK" class="link yellow">
                             <div class="icon text-center">
-                                <span class="material-icons ">confirmation_number</span>
+                                <span class="material-icons">confirmation_number</span>
                             </div>
                             <div class="txt">
                                 <h3>線上購票</h3>
@@ -316,7 +344,7 @@ export default {
           clickable: true
         },
         autoplay: {
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false
         },
         breakpoints: {

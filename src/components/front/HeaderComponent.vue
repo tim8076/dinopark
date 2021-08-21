@@ -76,9 +76,16 @@
                <li class="header__link d-none d-lg-block">
                   <a href="#"
                      class="fs-3 link shopping_cart"
-                     :data-num="cartNum"
                      @click.prevent="openCart = !openCart">
-                     <span class="material-icons icon-cart">shopping_cart</span>
+                     <div class="position-relative">
+                        <span class="material-icons icon-cart">
+                        shopping_cart
+                        </span>
+                        <span  v-if="cartNum > 0"
+                               class="shopping_cart_badge text-white">
+                          {{ cartNum }}
+                        </span>
+                     </div>
                   </a>
                   <Cart v-show="openCart"
                         @update-num="setCartNum" />
@@ -92,7 +99,15 @@
                          class="shopping_cart me-9"
                          :data-num="cartNum"
                          @click.prevent="openCart = !openCart">
-                  <span class="material-icons icon-cart">shopping_cart</span>
+                  <div class="position-relative">
+                    <span class="material-icons icon-cart">
+                    shopping_cart
+                    </span>
+                    <span  v-if="cartNum > 0"
+                           class="shopping_cart_badge text-white">
+                        {{ cartNum }}
+                    </span>
+                  </div>
                </router-link>
                <button  type="button"
                         class="btn btn-primary menu-button"

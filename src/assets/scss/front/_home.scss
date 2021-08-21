@@ -18,6 +18,9 @@
   .jumbotron__container{
       display: block;
       height: 35vh;
+      h2{
+        background-color: rgba(0,0,0,.5);
+      }
      @include iphone-hz {
        height: 80vh;
      }
@@ -46,6 +49,10 @@
       flex-direction: column;
       border-radius: 10px;
       padding: 0.5rem 0;
+      color: $primary-100;
+      &:hover{
+          background-color: $primary-100;
+      } 
       @include desktop-below {
         flex-direction: row;
         align-items: center;
@@ -53,36 +60,6 @@
         .txt{
             width: 50%;
         }
-      }
-      &.red{
-          color: $primary;
-          &:hover{
-              background-color: $primary;
-          } 
-      }
-      &.green{
-          color: $success;
-          &:hover{
-              background-color: $success;
-          } 
-      }
-      &.yellow{
-          color: orange;
-          &:hover{
-              background-color: orange;
-          } 
-      }
-      &.blue{
-          color: $blue;
-          &:hover{
-              background-color: $blue;
-          } 
-      }
-      &.purple{
-          color: $purple;
-          &:hover{
-              background-color: $purple;
-          } 
       }
       .txt{
         color: $dark;
@@ -200,7 +177,8 @@
     }
     .text{
       padding: 1rem;
-      background-color: $secondary;
+      background-color: $primary;
+      color: $white;
       position: absolute;
       right: 0;
       top: 10%;
