@@ -18,9 +18,11 @@
                 show: false
               }
             }" />
-            <div class="row mb-6">
-                <div class="col-md-4"
-                     v-for="article in news"
+            <div class="row mb-6" >
+                <div class="col-md-6 col-lg-4"
+                     data-aos="fade-up"
+                     :data-aos-delay="150 * index"
+                     v-for="(article, index ) in news"
                      :key="article.id">
                     <NewsCard :news="article" />
                 </div>

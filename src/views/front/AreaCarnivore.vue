@@ -1,5 +1,13 @@
 <template>
     <div class="area__page pb-8 bg-color">
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
+        </Loading>
         <div class="container py-5">
             <Breadcrumb :breadcrumb="{
               link2: {
@@ -14,21 +22,25 @@
             <div class="map bg-contain mb-9"
                  :style="{ backgroundImage: `url(${require('@/assets/image/dinos/carnivore/carniMap.png')})` }">
             </div>
-            <div class="title">
+            <div class="title" v-if="!isLoading">
                 <h2>肉食恐龍區</h2>
                 <p class="mb-0">
                   直到侏儸紀中到晚期，掠食性恐龍演化開始多樣化，主要有大型的暴龍科、以及眾多的小型手盜龍類恐龍，如迅猛龍。
                   本園區分為霸王龍園區及迅猛龍園區，霸王龍是最具代表性的大型獸腳類恐龍之一，迅猛龍則有如人類一般的高智慧。
                 </p>
             </div>
-            <div class="row">
-                <template v-for="item in descripition"
+            <div class="row" v-if="!isLoading">
+                <template v-for="(item, index) in descripition"
                           :key="item.title"
                           class="template">
-                    <div class="col-md-6 mb-6">
+                    <div class="col-md-6 mb-6"
+                         data-aos="fade-up"
+                         :data-aos-delay="150 * index">
                         <img :src="item.image" :alt="item.title">
                     </div>
-                    <div class="col-md-6 description mb-6">
+                    <div class="col-md-6 description mb-6"
+                         data-aos="fade-up"
+                         :data-aos-delay="150 * index">
                         <div class="txt ms-lg-6 mt-lg-6">
                             <h3 class="text-primary">{{ item.title }}</h3>
                             <p class="fs-5">{{ item.content }}</p>
@@ -60,6 +72,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    loading (sec) {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, sec)
+    }
+  },
+  created () {
+    this.loading(1000)
   }
 }
 </script>

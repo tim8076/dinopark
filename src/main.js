@@ -20,6 +20,10 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
+// 匯入 AOS套件(滾動動畫)
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 // 匯入 bootstrap js
 import 'bootstrap'
 
@@ -67,6 +71,12 @@ const options = {
   confirmButtonColor: '#8fbd3a',
   cancelButtonColor: '#c84131'
 }
+
+// aos
+AOS.init({
+  duration: 1500,
+  easing: 'ease-in-out'
+})
 
 app.component('swiper', Swiper)
 app.component('swiper-slide', SwiperSlide)

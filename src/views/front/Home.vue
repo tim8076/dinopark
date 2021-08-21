@@ -68,7 +68,7 @@
         </div>
         <div class="infos">
             <div class="container">
-               <ul class="infos__items">
+               <ul class="infos__items" data-aos="fade-up">
                     <li class="infos__item">
                         <router-link to="/dino-park/map" class="link red">
                             <div class="icon text-center">
@@ -128,7 +128,7 @@
             </div>
         </div>
         <div class="news">
-            <div class="container">
+            <div class="container" data-aos="fade-up">
                 <h2 class="title fs-3">最新消息</h2>
                 <swiper :wrapperTag="'ul'"
                         :slides-per-view="1"
@@ -145,7 +145,7 @@
             </div>
         </div>
         <div class="areas">
-            <div class="container">
+            <div class="container" data-aos="fade-up" data-aos-delay="1000">
                 <h2 class="title fs-3">園區導覽</h2>
                 <div class="row">
                     <div class="col-lg-8 mb-3">
@@ -305,7 +305,7 @@
             </div>
         </div>
         <div class="shop">
-            <div class="container">
+            <div class="container" data-aos="fade-up">
                 <h2 class="title fs-3">網路商城</h2>
                 <swiper :slides-per-view="1"
                         :space-between="30"

@@ -1,5 +1,13 @@
 <template>
   <div class="map__page bg-color">
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
+        </Loading>
         <div class="container py-5">
              <Breadcrumb :breadcrumb="{
               link2: {
@@ -13,7 +21,7 @@
             <div class="map bg-contain mb-9"
                  :style="{ backgroundImage: `url(${require('@/assets/image/dinos/carnivore/carniMap.png')})`}">
             </div>
-            <div class="px-6">
+            <div class="px-6" v-if="!isLoading">
                 <h2 class="pb-2 fw-bold text-primary fs-4">
                    園區介紹
                 </h2>
@@ -41,6 +49,7 @@
 export default {
   data () {
     return {
+      isLoading: false,
       parkAreas: [
         {
           link: '/dino-park/areas/carnivore',
@@ -59,6 +68,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    loading (sec) {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, sec)
+    }
+  },
+  created () {
+    this.loading(1000)
   }
 }
 </script>

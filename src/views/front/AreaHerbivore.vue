@@ -1,5 +1,13 @@
 <template>
     <div class="area__page pb-8 bg-color">
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
+        </Loading>
         <div class="container py-5">
             <Breadcrumb :breadcrumb="{
               link2: {
@@ -14,21 +22,27 @@
             <div class="map bg-contain mb-9"
                  :style="{ backgroundImage: `url(${require('@/assets/image/dinos/herbs/herbMap.png')})` }">
             </div>
-            <div class="title bg-success">
+            <div class="title bg-success"
+                 v-if="!isLoading">
                 <h2>草食恐龍區</h2>
                 <p class="mb-0">
                   本園區展示眾多草食性恐龍，草食性恐龍為了抵禦肉食恐龍的攻擊，演化出了相當多的防禦手段。
                   包括侏羅紀恐龍當中最高的腕龍、擁有帶刺的尾巴而著名的劍龍、有著帶刺頭骨而聞名的三角龍等等。
                 </p>
             </div>
-            <div class="row">
-                <template v-for="item in descripition"
+            <div class="row"
+                 v-if="!isLoading">
+                <template v-for="(item, index) in descripition"
                           :key="item.title"
                           class="template">
-                    <div class="col-md-6 mb-6">
+                    <div class="col-md-6 mb-6"
+                         data-aos="fade-up"
+                         :data-aos-delay="150 * index">
                         <img :src="item.image" :alt="item.title">
                     </div>
-                    <div class="col-md-6 description mb-6">
+                    <div class="col-md-6 description mb-6"
+                         data-aos="fade-up"
+                         :data-aos-delay="150 * index">
                         <div class="txt ms-lg-6 mt-lg-6">
                             <h3 class="text-primary">{{ item.title }}</h3>
                             <p class="fs-5">{{ item.content }}</p>
@@ -81,6 +95,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    loading (sec) {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, sec)
+    }
+  },
+  created () {
+    this.loading(1000)
   }
 }
 </script>
