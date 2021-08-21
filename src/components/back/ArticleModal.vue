@@ -26,8 +26,9 @@
                                     id="imgUpload"
                                     @change="upLoadImage(null, $event)">
                                 <img  class="img-fluid mb-3"
-                                    :src="article.image"
-                                    v-if="!isLoading">
+                                      alt="main-article-image"
+                                      :src="article.image"
+                                      v-if="!isLoading">
                                 <div  class="d-flex
                                     justify-content-center
                                     align-items-center"
@@ -95,14 +96,16 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-info me-3"
+                                            type="button"
                                             @click="addTagInput"
                                             v-if="article.tag[article.tag.length - 1 ] ||
                                                   article.tag.length === 1 ">
                                         新增標籤欄位
                                     </button>
                                     <button class="btn btn-outline-primary"
-                                           @click="deleteTagInput"
-                                           v-else>
+                                            type="button"
+                                            @click="deleteTagInput"
+                                            v-else>
                                         刪除標籤欄位
                                     </button>
                                 </div>
@@ -132,7 +135,8 @@
                                                     class="form-control mb-3"
                                                     @change="upLoadImage(index, $event)">
                                                 <img  class="img-fluid mb-3"
-                                                    :src="article.paragraph[index].image">
+                                                      alt="paragraph-image"
+                                                      :src="article.paragraph[index].image">
                                             </div>
                                             <div class="col-lg-8 mb-md-3">
                                                 <label class="form-label"
@@ -157,12 +161,14 @@
                                         </template>
                                     </div>
                                     <button class="btn btn-info w-25 me-3"
+                                            type="button"
                                             v-if="article.paragraph[article.paragraph.length - 1].content ||
                                                   article.paragraph.length === 1"
                                             @click="addParagraph">
                                             新增段落
                                     </button>
                                     <button class="btn btn-outline-primary w-25"
+                                            type="button"
                                             v-else
                                             @click="deleteParagraph">
                                             刪除段落
@@ -195,8 +201,9 @@
         </div>
     </div>
 </template>
+
 <script>
-import Modal from '../../mixins/Modal.vue'
+import Modal from '@/mixins/Modal.vue'
 
 export default {
   props: {

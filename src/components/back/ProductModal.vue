@@ -26,6 +26,7 @@
                                id="imgUpload"
                                @change="upLoadImage('main-image', $event)">
                         <img  class="img-fluid mb-3"
+                              alt="main-image"
                               :src="tempProduct.imageUrl"
                               v-if="!isLoading">
                         <div  class="d-flex
@@ -47,15 +48,18 @@
                                :id="`imagesUrl${index}`"
                                @change="upLoadImage(index, $event)">
                              <img  class="img-fluid mb-3"
-                              :src="tempProduct.imagesUrl[index]">
+                                   alt="main-image"
+                                   :src="tempProduct.imagesUrl[index]">
                         </div>
                         <button class="btn btn-info me-3 mb-3"
+                                type="button"
                                 v-if="tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1] ||
                                       tempProduct.imagesUrl.length === 1"
                                 @click="addImage">
                                 新增圖片
                         </button>
                         <button class="btn btn-primary mb-3"
+                                type="button"
                                 @click="deleteImage">
                                 刪除圖片
                         </button>
@@ -156,6 +160,7 @@
                                               刪除欄位
                                       </button>
                                       <button class="btn btn-primary"
+                                              type="button"
                                               @click="deleteSpecType(index)">
                                               刪除規格種類
                                       </button>
@@ -163,8 +168,9 @@
                               </div>
                               <div>
                                 <button class="btn btn-info me-3 mb-3"
-                                      @click="addSpecType">
-                                        新增規格種類
+                                        type="button"
+                                        @click="addSpecType">
+                                          新增規格種類
                                 </button>
                               </div>
                             </template>
@@ -188,10 +194,12 @@
                               </div>
                               <div>
                                   <button class="btn btn-info me-3 mb-3"
-                                        @click="addSpecType">
-                                          新增規格種類
+                                          type="button"
+                                          @click="addSpecType">
+                                            新增規格種類
                                   </button>
                                   <button class="btn btn-primary mb-3"
+                                          type="button"
                                           @click="deleteSpecType">
                                           刪除規格種類
                                   </button>
@@ -244,8 +252,9 @@
         </div>
     </div>
 </template>
+
 <script>
-import Modal from '../../mixins/Modal.vue'
+import Modal from '@/mixins/Modal.vue'
 
 export default {
   props: {

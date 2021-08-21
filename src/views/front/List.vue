@@ -1,12 +1,12 @@
 <template>
    <div class="cart_list py-6">
-       <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
        <div class="container">
           <div class="progress__area mb-6 py-6">
@@ -27,15 +27,14 @@
           </div>
           <div class="subtotal__area"
                v-if="cartLength">
-            <Cart :size="'lg'"
+            <MenuCart :size="'lg'"
               class="mb-6"
-              @send-total="updateTotal">
-            </Cart>
+              @send-total="updateTotal" />
             <div class="row">
               <div class="col-md-7">
                 <div class="coupon">
                     <h2 class="cart-title">可使用優惠券</h2>
-                    <div class="coupon__list py-1 px-3 border ">
+                    <div class="coupon__list py-1 px-3 border">
                       <table class="table">
                         <thead class="coupon__head">
                             <tr>
@@ -108,23 +107,23 @@
             <swiper :slides-per-view="1"
                     :space-between="30"
                     :loop="true"
-                    :scrollbar="{ draggable: true }"
-                    :breakpoints="swiperOption"
+                    :scrollbar="swiperSetting.scrollbar"
+                    :breakpoints="swiperSetting.breakpoints"
                     class="mb-6">
                 <swiper-slide v-for="product in recommendProducts"
                               :key="product.id">
                       <Card :product-data="product"
-                            @add-cart="addToCart">
-                      </Card>
+                            @add-cart="addToCart" />
                 </swiper-slide>
             </swiper>
           </div>
        </div>
     </div>
 </template>
+
 <script>
-import Cart from '../../components/front/MenuCart.vue'
-import Card from '../../components/front/Card.vue'
+import MenuCart from '@/components/front/MenuCart.vue'
+import Card from '@/components/front/Card.vue'
 
 export default {
   data () {
@@ -136,20 +135,25 @@ export default {
       total: 0,
       finalTotal: 0,
       cartLength: 0,
-      swiperOption: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
+      swiperSetting: {
+        scrollbar: {
+          draggable: true
         },
-        1025: {
-          slidesPerView: 4,
-          spaceBetween: 30
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          1025: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          }
         }
       }
     }
   },
   components: {
-    Cart,
+    MenuCart,
     Card
   },
   computed: {

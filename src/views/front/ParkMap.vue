@@ -9,10 +9,9 @@
               link3: {
                 show: false
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="map bg-contain mb-9"
-                 :style="{ backgroundImage: 'url(' + require('@/assets/dinos/carnivore/carniMap.png') + ')' }">
+                 :style="{ backgroundImage: `url(${require('@/assets/image/dinos/carnivore/carniMap.png')})`}">
             </div>
             <div class="px-6">
                 <h2 class="pb-2 fw-bold text-primary fs-4">
@@ -37,12 +36,11 @@
         </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
     return {
-      isLoading: false,
-      articles: [],
       parkAreas: [
         {
           link: '/dino-park/areas/carnivore',

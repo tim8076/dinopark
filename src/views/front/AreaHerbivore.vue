@@ -10,10 +10,9 @@
                 show: true,
                 title: '草食恐龍區',
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="map bg-contain mb-9"
-                 :style="{ backgroundImage: 'url(' + require('@/assets/dinos/herbs/herbMap.png') + ')' }">
+                 :style="{ backgroundImage: `url(${require('@/assets/image/dinos/herbs/herbMap.png')})` }">
             </div>
             <div class="title bg-success">
                 <h2>草食恐龍區</h2>
@@ -40,6 +39,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
   data () {

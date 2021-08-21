@@ -12,13 +12,13 @@ import router from './router'
 // 匯入 mitt 套件
 import mitt from 'mitt'
 
-// 匯入 sweetalert2
-import VueSweetalert2 from 'vue-sweetalert2'
-import 'sweetalert2/dist/sweetalert2.min.css'
-
 // 匯入 vue-loading套件
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
+
+// 匯入 sweetalert2
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 // 匯入 bootstrap js
 import 'bootstrap'

@@ -16,7 +16,8 @@
                       <th scope="row"
                           class="cart__title">
                           <img v-if="size === 'lg'"
-                              :src="cart.product.imageUrl">
+                              :src="cart.product.imageUrl"
+                              alt="product-image">
                           <div class="text">
                              {{ cart.product.title }}
                               <span v-for="spec in cart.productSpecs"
@@ -108,6 +109,7 @@
                   <tr class="total__row">
                     <td colspan="4">
                       <button class="btn btn-outline-primary"
+                              type="button"
                               :class="{ 'disabled' : cartList.length === 0 }"
                               @click="deleteAllCartItems">
                         清空購物車
@@ -117,7 +119,7 @@
               </tbody>
           </table>
         </div>
-        <div class="buttons ">
+        <div class="buttons">
             <router-link  class="btn btn-primary w-100 fw-bolder"
                           v-if="cartList.length !== 0 && size !== 'lg'"
                           to="/dino-park/cart/list">
@@ -130,6 +132,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
   props: {

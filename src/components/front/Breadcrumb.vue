@@ -1,6 +1,6 @@
 <template>
-   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb  fs-5">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb fs-5">
             <li class="breadcrumb-item">
                 <router-link to="/dino-park/home" class="text-dark">首頁</router-link>
             </li>
@@ -16,6 +16,7 @@
         </ol>
     </nav>
 </template>
+
 <script>
 export default {
   props: {

@@ -48,9 +48,8 @@
                                       :class="{ 'is-invalid': errors['姓名'] }"
                                       placeholder="請輸入 訂購人姓名"
                                       rules="required"
-                                      v-model="order.user.name">
-                              </Field>
-                              <error-message name="姓名" class="invalid-feedback"></error-message>
+                                      v-model="order.user.name" />
+                              <ErrorMessage name="姓名" class="invalid-feedback" />
                           </div>
                           <div class="col-md-6 mb-3">
                               <label for="tel" class="form-label">電話</label>
@@ -61,9 +60,8 @@
                                       :class="{ 'is-invalid': errors['電話'] }"
                                       placeholder="請輸入電話"
                                       rules="min:9|required"
-                                      v-model="order.user.tel">
-                              </Field>
-                              <error-message name="電話" class="invalid-feedback"></error-message>
+                                      v-model="order.user.tel" />
+                              <ErrorMessage name="電話" class="invalid-feedback" />
                           </div>
                           <div class="mb-3">
                               <label for="email" class="form-label">Email</label>
@@ -74,9 +72,8 @@
                                       :class="{ 'is-invalid': errors['信箱'] }"
                                       placeholder="請輸入 Email"
                                       rules="email|required"
-                                      v-model="order.user.email">
-                              </Field>
-                              <error-message name="信箱" class="invalid-feedback"></error-message>
+                                      v-model="order.user.email" />
+                              <ErrorMessage name="信箱" class="invalid-feedback" />
                           </div>
                           <div class="mb-3">
                               <label for="address" class="form-label">地址</label>
@@ -87,9 +84,8 @@
                                       :class="{ 'is-invalid': errors['地址'] }"
                                       placeholder="請輸入地址"
                                       rules="required"
-                                      v-model="order.user.address">
-                              </Field>
-                              <error-message name="地址" class="invalid-feedback"></error-message>
+                                      v-model="order.user.address" />
+                              <ErrorMessage name="地址" class="invalid-feedback" />
                           </div>
                           <div class="mb-3">
                             <label for="comment" class="form-label">留言</label>
@@ -110,8 +106,9 @@
     </div>
     </div>
 </template>
+
 <script>
-import Modal from '../../mixins/Modal.vue'
+import Modal from '@/mixins/Modal.vue'
 export default {
   props: {
     tempOrder: {

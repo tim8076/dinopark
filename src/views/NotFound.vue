@@ -2,7 +2,7 @@
    <div class="not-foundpage">
        <div class="alert-area">
           <div class="logo text-center bg-dark py-3">
-              <img src="../assets/logo/dinopark.png" alt="dinoparkLogo">
+              <img src="../assets/image/logo/dinopark.png" alt="dinoparkLogo">
           </div>
           <div class="title text-white p-3 text-center">
               <h1 >404</h1>

@@ -3,7 +3,7 @@
        <footer class="footer bg-dark py-6">
             <div class="container px-4 text-white">
                 <div class="logo">
-                    <img src="../../assets/logo/dinopark.png" alt="dinopark">
+                    <img src="@/assets/image/logo/dinopark.png" alt="dinopark">
                 </div>
                 <p class="text-center">圖片僅做為學習用途，無商業用途。</p>
                 <ul class="contact">

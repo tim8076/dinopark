@@ -1,12 +1,12 @@
 <template>
    <div class="news__page bg-color">
       <Loading v-model:active="isLoading">
-                    <div class="loadingio-spinner-rolling-feeb69z48bi">
-                    <div class="ldio-947txsafiul">
-                        <div>
-                        </div>
-                    </div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
       </Loading>
       <div class="container py-5 mh-100vh">
             <Breadcrumb :breadcrumb="{
@@ -17,21 +17,20 @@
               link3: {
                 show: false
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="row mb-6">
                 <div class="col-md-4"
                      v-for="article in news"
                      :key="article.id">
-                    <NewsCard :news="article">
-                    </NewsCard>
+                    <NewsCard :news="article" />
                 </div>
             </div>
       </div>
    </div>
 </template>
+
 <script>
-import NewsCard from '../../components/front/NewsCard.vue'
+import NewsCard from '@/components/front/NewsCard.vue'
 
 export default {
   data () {
@@ -47,9 +46,7 @@ export default {
       })
     }
   },
-  components: {
-    NewsCard
-  },
+  components: { NewsCard },
   methods: {
     getArticles (page = 1) {
       this.isLoading = true

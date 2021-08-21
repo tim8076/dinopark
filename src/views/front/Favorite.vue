@@ -1,12 +1,12 @@
 <template>
     <div class="favorite">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <div class="container py-5 mh-100vh">
             <Breadcrumb :breadcrumb="{
@@ -17,8 +17,7 @@
               link3: {
                 show: false
               }
-            }">
-            </Breadcrumb>
+            }" />
             <h2 class="fs-4 border-bottom border-2 pb-2 fw-bold mb-6 text-primary">您的收藏商品</h2>
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-6"
@@ -27,15 +26,15 @@
                     <Card  :favorite="true"
                            :product-data="product"
                            @add-cart="addToCart"
-                           @remove-favorite="removeFavorite">
-                    </Card>
+                           @remove-favorite="removeFavorite" />
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
-import Card from '../../components/front/Card.vue'
+import Card from '@/components/front/Card.vue'
 
 export default {
   data () {
@@ -44,9 +43,7 @@ export default {
       isLoading: false
     }
   },
-  components: {
-    Card
-  },
+  components: { Card },
   methods: {
     removeFavorite (id) {
       this.isLoading = true

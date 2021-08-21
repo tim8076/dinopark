@@ -1,15 +1,17 @@
 <template>
 <div class="logIn bg-cover">
     <Loading v-model:active="isLoading">
-              <div class="loadingio-spinner-rolling-feeb69z48bi">
-              <div class="ldio-947txsafiul">
+        <div class="outter-spinner">
+            <div class="inner-spinner">
                 <div>
                 </div>
-              </div>
             </div>
+        </div>
     </Loading>
-    <div class="card border border-primary border-2" >
-        <img src="../../assets/logo/dinopark-full.png" class="card-img-top image" alt="">
+    <div class="card border border-primary border-2">
+        <img src="@/assets/image/logo/dinopark-full.png"
+             class="card-img-top image"
+             alt="login-image">
         <div class="card-body p-8">
             <h3 class="mb-5 text-center text-primary">登入後台</h3>
             <form @submit.prevent="signIn">

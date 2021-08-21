@@ -1,12 +1,12 @@
 <template>
-   <div class="info__page bg-color">
+    <div class="info__page bg-color">
         <Loading v-model:active="isLoading">
-            <div class="loadingio-spinner-rolling-feeb69z48bi">
-                <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
-                </div>
-            </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
         </Loading>
         <div class="container py-5 mh-100vh">
             <Breadcrumb :breadcrumb="{
@@ -17,10 +17,9 @@
               link3: {
                 show: false
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="info__title">
-               <h2 class="fs-2 bg-">遊園資訊</h2>
+               <h2 class="fs-2">遊園資訊</h2>
                <div class="info__title__line"></div>
             </div>
             <div class="info__type py-3 mb-6">
@@ -102,7 +101,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <Panel :panel-info="panelTime"></Panel>
+                <Panel :panel-info="panelTime" />
             </div>
             <div class="info__ticket"
                  v-show="infoType === 'ticket'">
@@ -146,7 +145,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <Panel :panel-info="panelTicket"></Panel>
+                <Panel :panel-info="panelTicket" />
             </div>
             <div class="info_traffic"
                  v-show="infoType === 'traffic'">
@@ -174,13 +173,15 @@
                         </tr>
                     </tbody>
                 </table>
-                <Panel :panel-info="panelTraffic"></Panel>
+                <Panel :panel-info="panelTraffic" />
             </div>
         </div>
    </div>
 </template>
+
 <script>
-import Panel from '../../components/front/Panel.vue'
+import Panel from '@/components/front/Panel.vue'
+
 export default {
   data () {
     return {
@@ -219,9 +220,7 @@ export default {
       }
     }
   },
-  components: {
-    Panel
-  },
+  components: { Panel },
   created () {
     const type = this.$route.params.type
     this.infoType = type

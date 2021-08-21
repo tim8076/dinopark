@@ -1,18 +1,17 @@
 <template>
    <div class="article__list">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <ArticleModal ref="articleModal"
                       :temp-article="tempArticle"
                       @send-article="updateArticle"
-                      :isNew="isNew">
-        </ArticleModal>
+                      :isNew="isNew" />
         <div class="container p-5 border border-primary">
             <div class="d-flex justify-content-end align-items-center mb-3">
               <button class="btn btn-info"
@@ -22,8 +21,7 @@
               </button>
             </div>
             <Alert :text="'園區介紹文章請加上type:公園新聞'"
-                   :color="'success'">
-            </Alert>
+                   :color="'success'" />
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -72,14 +70,14 @@
                 </table>
             </div>
             <Pagination :pagination="pagination"
-                        @change-page="getArticles">
-            </Pagination>
+                        @change-page="getArticles" />
         </div>
    </div>
 </template>
+
 <script>
-import ArticleModal from '../../components/back/ArticleModal.vue'
-import Pagination from '../../components/Pagination.vue'
+import ArticleModal from '@/components/back/ArticleModal.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   data () {

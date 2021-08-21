@@ -1,8 +1,8 @@
 <template>
     <div class="news__item">
         <router-link :to="`/dino-park/news/${aticle.id}`" class="link">
-            <div class="img ">
-                <img :src="aticle.image" class="w-100">
+            <div class="img">
+                <img :src="aticle.image" class="w-100" alt="article-image">
             </div>
             <div class="txt">
                 <p>{{ $dateFormat(aticle.create_at) }}</p>
@@ -14,6 +14,7 @@
         </router-link>
     </div>
 </template>
+
 <script>
 export default {
   props: {

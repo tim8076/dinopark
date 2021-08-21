@@ -10,10 +10,9 @@
                 show: true,
                 title: '鳥園',
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="map bg-contain mb-9"
-                 :style="{ backgroundImage: 'url(' + require('@/assets/dinos/bird/birdMap.png') + ')' }">
+                 :style="{ backgroundImage: `url(${require('@/assets/image/dinos/bird/birdMap.png')})`}">
             </div>
             <div class="title">
                 <h2>鳥園</h2>
@@ -40,6 +39,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
   data () {

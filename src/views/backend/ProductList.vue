@@ -1,18 +1,17 @@
 <template>
     <div class="product__list fw-bold mb-6">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <ProductModal ref="productModal"
                       :temp="tempProduct"
                       :isNew="isNew"
-                      @send-product="updateProduct">
-        </ProductModal>
+                      @send-product="updateProduct" />
         <div class="container p-5 border border-primary">
             <div class="d-flex justify-content-end align-items-center mb-3">
               <button class="btn btn-info"
@@ -22,8 +21,7 @@
               </button>
             </div>
             <Alert :text="'產品新增請參考本季商品型錄'"
-                   :color="'success'">
-            </Alert>
+                   :color="'success'" />
             <div class="table-responsive">
                <table class="table">
                   <thead>
@@ -65,11 +63,11 @@
               </table>
             </div>
             <Pagination :pagination="pagination"
-                        @change-page="getProducts">
-            </Pagination>
+                        @change-page="getProducts" />
         </div>
     </div>
 </template>
+
 <script>
 import ProductModal from '@/components/back/ProductModal.vue'
 import Pagination from '@/components/Pagination.vue'

@@ -10,10 +10,9 @@
                 show: true,
                 title: '肉食恐龍區',
               }
-            }">
-            </Breadcrumb>
+            }" />
             <div class="map bg-contain mb-9"
-                 :style="{ backgroundImage: 'url(' + require('@/assets/dinos/carnivore/carniMap.png') + ')' }">
+                 :style="{ backgroundImage: `url(${require('@/assets/image/dinos/carnivore/carniMap.png')})` }">
             </div>
             <div class="title">
                 <h2>肉食恐龍區</h2>
@@ -40,6 +39,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
   data () {

@@ -1,17 +1,16 @@
 <template>
      <div class="coupon__list fw-bold mb-6">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <CouponModal ref="couponModal"
                      :temp-coupon="tempCoupon"
-                     @send-coupon="updateCoupon">
-        </CouponModal>
+                     @send-coupon="updateCoupon" />
         <div class="container p-5 border border-primary">
             <div class="d-flex justify-content-end align-items-center mb-3">
               <button class="btn btn-info"
@@ -21,8 +20,7 @@
               </button>
             </div>
             <Alert :text="'設定五折以下折扣，須經由園區主任簽核!!'"
-                   :color="'primary'">
-            </Alert>
+                   :color="'primary'" />
             <div class="table-responsive">
                <table class="table">
                   <thead>
@@ -64,11 +62,11 @@
               </table>
             </div>
             <Pagination :pagination="pagination"
-                        @change-page="getCoupons">
-            </Pagination>
+                        @change-page="getCoupons" />
         </div>
     </div>
 </template>
+
 <script>
 import CouponModal from '@/components/back/CouponModal.vue'
 import Pagination from '@/components/Pagination.vue'

@@ -1,13 +1,13 @@
 <template>
   <div class="news__single bg-color">
-    <Loading v-model:active="isLoading">
-        <div class="loadingio-spinner-rolling-feeb69z48bi">
-          <div class="ldio-947txsafiul">
-              <div>
+      <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
               </div>
           </div>
-        </div>
-    </Loading>
+      </Loading>
     <div class="container py-5 mh-100vh">
         <Breadcrumb :breadcrumb="{
           link2: {
@@ -18,14 +18,13 @@
             show: true,
             title: article.title,
           }
-        }">
-        </Breadcrumb>
+        }" />
         <h2 class="fs-2 mb-3 fw-bold">{{ article.title }}</h2>
         <p class="d-flex align-items-center border-bottom border-2 pb-3">
           <span class="material-icons me-3">today</span>
           {{ $dateFormat(article.create_at) }}
         </p>
-        <img class="d-block mx-auto my-6" :src="article.image" alt="">
+        <img class="d-block mx-auto my-6" :src="article.image" alt="article-image">
         <p style="white-space: pre-wrap;" class="lh-lg border-bottom border-2 pb-3">
           {{ article.content }}
         </p>
@@ -38,6 +37,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {

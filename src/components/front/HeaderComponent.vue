@@ -81,8 +81,7 @@
                      <span class="material-icons icon-cart">shopping_cart</span>
                   </a>
                   <Cart v-show="openCart"
-                        @update-num="setCartNum">
-                  </Cart>
+                        @update-num="setCartNum" />
                </li>
            </ul>
            <div class="header__link action d-flex align-items-center d-lg-none">
@@ -98,12 +97,15 @@
                <button  type="button"
                         class="btn btn-primary menu-button"
                         @click="openToggle">
-                  <img src="../../assets/logo/bars.png" width="25" height="25">
+                  <img src="@/assets/image/logo/bars.png"
+                       alt="menu-bars"
+                       width="25" height="25">
                </button>
            </div>
        </div>
     </header>
 </template>
+
 <script>
 import Cart from './MenuCart.vue'
 
@@ -131,9 +133,7 @@ export default {
       scrollSmallMenu: false
     }
   },
-  components: {
-    Cart
-  },
+  components: { Cart },
   methods: {
     openToggle () {
       this.menuToggleIndex = 0
@@ -162,7 +162,7 @@ export default {
   created () {
     this.$watch(
       () => this.$route.params,
-      (toParams, previousParams) => {
+      () => {
         this.openCart = false
         this.isOpen = false
       }

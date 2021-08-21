@@ -29,7 +29,7 @@
      }
   }
   .infos{
-    background-color: $gray-100;
+    background-color: $white;
     &__items{
       display: flex;
     }
@@ -123,10 +123,10 @@
     }
   }
   .news{
-    background-color: #eeffd0;
+    background-color: $gray-100;
   }
   .areas{
-    background-color: $gray-100;
+    background-color: $white;
     &__item{
        display: block;
        height: 260px;
@@ -172,12 +172,9 @@
           transform: translateY(100%); 
        }
     }
-    &__item.map{
-       background-size: contain;
-    }
   }
   .comments{
-    background-color: #eeffd0;
+    background-color: $gray-100;
     &__item .image{
       text-align: center;
       img{
@@ -218,6 +215,6 @@
     }
   }
   .shop{
-    background-color: $gray-100;
+    background-color: $white;
   }
 }

@@ -1,12 +1,12 @@
 <template>
     <div class="dashboard">
-       <Loading v-model:active="isLoading">
-              <div class="loadingio-spinner-rolling-feeb69z48bi">
-              <div class="ldio-947txsafiul">
+      <Loading v-model:active="isLoading">
+        <div class="outter-spinner">
+            <div class="inner-spinner">
                 <div>
                 </div>
-              </div>
             </div>
+        </div>
       </Loading>
        <header class="mb-3">
           <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3 fw-bold">
@@ -46,6 +46,7 @@
        <router-view v-if="check"></router-view>
     </div>
 </template>
+
 <script>
 export default {
   data () {

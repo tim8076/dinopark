@@ -38,7 +38,7 @@
   }
   &__logo a{
     display: block;
-    background-image: url('assets/logo/dinopark.png');
+    background-image: url('assets/image/logo/dinopark.png');
     width: 80px;
     height: 60px;
     @include pad {
@@ -76,7 +76,7 @@
       visibility: visible;
     }
     &:hover > .link{
-      color: $secondary;
+      color: $gray-400;
     }
     @media(max-width:768px){
       border-bottom: 2px solid $white;
@@ -105,7 +105,7 @@
     font-size: 2rem;
     color: $white;
     &:hover{
-      color: $secondary;
+      color: $gray-400;
     }
     @include desktop-below {
       font-size: 2.2rem;
@@ -207,7 +207,7 @@
     background-color: $dark;
     &:hover{
       color: $dark;
-      background-color: $secondary;
+      background-color: $gray-200;
     }
     @media(max-width:768px){
       padding: 20px 24px;

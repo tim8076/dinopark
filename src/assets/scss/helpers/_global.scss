@@ -23,30 +23,37 @@ img{
 //前台-最新消息卡片元件
 .news__item {
     box-shadow: 5px 5px 10px rgba(0,0,0,.2);
-    transition: transform .5s ease-in-out, color .5s ease-in-out; 
+    transition: all .5s ease-in-out; 
     margin-bottom: 1.5rem; 
     &:hover{
       transform: translateY(-3%);
       h5{
           color: $primary;
       }
+      .txt span{
+        background-color: $primary;
+        color: $white;
+      }
     }
     .txt{
       padding: 1rem 1rem 2rem 1rem;
       background-color: $white;
       color: $dark;
+      transition: all .3s ease-in-out; 
         h5{
             font-weight: bold;
             margin-bottom: 1rem;
+            transition: all .5s ease-in-out; 
         }
         p{
             margin: .5rem 0;
         }
-        span {
+        span{
+            transition: all .5s ease-in-out; 
             display: inline-block;
             padding: 0.5rem;
-            background-color: $primary;
-            color: $white;
+            background-color: $gray-200;
+            color: $dark;
         }
     }
   }

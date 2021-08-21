@@ -1,21 +1,19 @@
 <template>
     <div class="order__list">
-       <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <OrderModal ref="orderModal"
                     :temp-order="tempOrder"
-                    @modify-order="modifyOrder">
-        </OrderModal>
+                    @modify-order="modifyOrder" />
         <div class="container p-5 border border-primary">
             <Alert :text="'刪除全部訂單，須經由園區主任簽核!!'"
-                   :color="'primary'">
-            </Alert>
+                   :color="'primary'" />
             <div class="d-flex justify-content-end align-items-center mb-3">
               <button class="btn btn-outline-primary"
                       :class="{ 'disabled' : !orders.length }"
@@ -63,14 +61,15 @@
               </table>
             </div>
             <Pagination :pagination="pagination"
-                        @change-page="getOrders">
-            </Pagination>
+                        @change-page="getOrders" />
         </div>
     </div>
 </template>
+
 <script>
-import Pagination from '../../components/Pagination.vue'
-import OrderModal from '../../components/back/OrderModal.vue'
+import Pagination from '@/components/Pagination.vue'
+import OrderModal from '@/components/back/OrderModal.vue'
+
 export default {
   data () {
     return {

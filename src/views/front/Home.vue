@@ -1,42 +1,39 @@
 <template>
     <div class="home__page bg-cover"
-         :style="{ backgroundImage: 'url(' + require('@/assets/index/quote.jpg') + ')' }">
+         :style="{ backgroundImage: `url( ${require('@/assets/image/index/quote.jpg')})` }">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <div class="jumbotron">
             <swiper
-                 :slides-per-view="1"
+                :slides-per-view="1"
                 :space-between="0"
                 navigation
                 :loop="true"
-                :pagination="{ clickable: true }"
-                :scrollbar="{ draggable: true }"
-                :autoplay="{
-                  'delay': 2500,
-                  'disableOnInteraction': false
-                }">
+                :pagination="swiperSetting.pagination"
+                :scrollbar="swiperSetting.scrollbar"
+                :autoplay="swiperSetting.autoplay">
                 <swiper-slide>
                     <router-link class="jumbotron__container bg-cover"
                                   to="/dino-park/map"
-                                 :style="{ backgroundImage: 'url(' + require('@/assets/index/img3.png') + ')' }">
+                                 :style="{ backgroundImage: `url(${require('@/assets/image/index/img3.png')})`}">
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
                     <router-link class="jumbotron__container bg-cover"
                                  to="/dino-park/news/-MeQEimfIyhBvctej3FN"
-                                  :style="{ backgroundImage: 'url(' + require('@/assets/index/img2.png') + ')' }">>
+                                :style="{ backgroundImage: `url(${require('@/assets/image/index/img2.png')})` }">
                     </router-link>
                 </swiper-slide>
                 <swiper-slide>
                     <router-link to="/dino-park/store/-MdHdW_48QYkLbVwfP-2"
-                                 class="jumbotron__container bg-cover"
-                                 :style="{ backgroundImage: 'url(' + require('@/assets/index/img1.png') + ')' }">>
+                                class="jumbotron__container bg-cover"
+                                :style="{ backgroundImage: `url(${require('@/assets/image/index/img1.png')})`}">
                     </router-link>
                 </swiper-slide>
             </swiper>
@@ -46,7 +43,7 @@
                <ul class="infos__items">
                     <li class="infos__item">
                         <router-link to="/dino-park/map" class="link red">
-                            <div class="icon  text-center">
+                            <div class="icon text-center">
                                 <span class="material-icons">attractions</span>
                             </div>
                             <div class="txt">
@@ -57,7 +54,7 @@
                     </li>
                     <li class="infos__item">
                         <router-link to="/dino-park/store" class="link green">
-                            <div class="icon  text-center">
+                            <div class="icon text-center">
                                 <span class="material-icons">shopping_cart</span>
                             </div>
                             <div class="txt">
@@ -68,7 +65,7 @@
                     </li>
                     <li class="infos__item">
                         <router-link to="/dino-park/store/-MeVDdkoCE_GF9omo2XK" class="link yellow">
-                            <div class="icon  text-center">
+                            <div class="icon text-center">
                                 <span class="material-icons ">confirmation_number</span>
                             </div>
                             <div class="txt">
@@ -80,7 +77,7 @@
                     <li class="infos__item">
                         <router-link to="/dino-park/info/time" class="link purple">
                             <div class="icon text-center">
-                                <span class="material-icons ">query_builder</span>
+                                <span class="material-icons">query_builder</span>
                             </div>
                             <div class="txt">
                                 <h3>營業時間</h3>
@@ -109,13 +106,12 @@
                         :slides-per-view="1"
                         :space-between="30"
                         :loop="true"
-                        :scrollbar="{ draggable: true }"
-                        :breakpoints="swiperOption">
+                        :scrollbar="swiperSetting.scrollbar"
+                        :breakpoints="swiperSetting.breakpoints">
                         <swiper-slide :tag="'li'"
                                        v-for="article in news"
                                       :key="article.id">
-                                <NewsCard :news="article">
-                                </NewsCard>
+                                <NewsCard :news="article" />
                         </swiper-slide>
                 </swiper>
             </div>
@@ -125,7 +121,7 @@
                 <h2 class="title fs-3">園區導覽</h2>
                 <div class="row">
                     <div class="col-lg-8 mb-3">
-                        <ul class="row" >
+                        <ul class="row">
                             <li class="col-md-6">
                                  <router-link
                                      to="/dino-park/areas/herbivore"
@@ -190,26 +186,15 @@
                     navigation
                     :loop="true"
                     :pagination="false"
-                    :scrollbar="{ draggable: true }"
-                    :autoplay="{
-                    'delay': 2500,
-                    'disableOnInteraction': false
-                    }"
-                    :breakpoints="{
-                        '768': {
-                            'slidesPerView': 2,
-                            'spaceBetween': 30
-                        },
-                        '1025': {
-                            'slidesPerView': 5,
-                            'spaceBetween': 30
-                        }
-                    }">
+                    :scrollbar="swiperSetting.scrollbar"
+                    :autoplay="swiperSetting.autoplay"
+                    :breakpoints="swiperSetting.breakpointsComments">
                     <swiper-slide>
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-1.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-1.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -222,7 +207,8 @@
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-2.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-2.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -235,7 +221,8 @@
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-3.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-3.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -248,7 +235,8 @@
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-4.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-4.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -261,7 +249,8 @@
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-5.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-5.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -274,7 +263,8 @@
                         <div class="comments__item">
                             <div class="image">
                                 <img class="img-cover"
-                                :src="require('@/assets/index/tourist-6.jpg')" alt="image.title">
+                                    :src="require('@/assets/image/index/tourist-6.jpg')"
+                                    alt="customer-image">
                             </div>
                             <div class="text">
                                 <p class="m-0">
@@ -292,23 +282,23 @@
                 <swiper :slides-per-view="1"
                         :space-between="30"
                         :loop="true"
-                        :scrollbar="{ draggable: true }"
-                        :breakpoints="swiperOption"
+                        :scrollbar="swiperSetting.scrollbar"
+                        :breakpoints="swiperSetting.breakpoints"
                         class="mb-6">
                     <swiper-slide v-for="product in recommendProducts"
                                   :key="product.id">
                         <Card :product-data="product"
-                                @add-cart="addToCart">
-                        </Card>
+                                @add-cart="addToCart" />
                     </swiper-slide>
                 </swiper>
             </div>
         </div>
     </div>
 </template>
+
 <script>
-import Card from '../../components/front/Card.vue'
-import NewsCard from '../../components/front/NewsCard.vue'
+import Card from '@/components/front/Card.vue'
+import NewsCard from '@/components/front/NewsCard.vue'
 
 export default {
   data () {
@@ -318,14 +308,36 @@ export default {
       recommendProducts: [],
       newsAry: [],
       pagination: {},
-      swiperOption: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
+      swiperSetting: {
+        scrollbar: {
+          draggable: true
         },
-        1025: {
-          slidesPerView: 3,
-          spaceBetween: 30
+        pagination: {
+          clickable: true
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          1025: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          }
+        },
+        breakpointsComments: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          1025: {
+            slidesPerView: 5,
+            spaceBetween: 30
+          }
         }
       }
     }

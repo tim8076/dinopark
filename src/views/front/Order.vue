@@ -1,12 +1,12 @@
 <template>
    <div class="cart_order py-6">
-       <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+        <Loading v-model:active="isLoading">
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
        <div class="container">
           <div class="progress__area mb-6 py-6">
@@ -28,7 +28,7 @@
           <div class="row mb-6">
              <div class="col-10 col-md-8 mx-auto border border-3 p-0">
                  <h2 class="cart-title">訂購人資料</h2>
-                 <Form class="inputs p-6 "
+                 <Form class="inputs p-6"
                        v-slot="{ errors }"
                        @submit="sendOrder">
                     <div class="mb-3">
@@ -40,9 +40,8 @@
                                v-model.trim="user.name"
                                rules="required"
                                :class="{ 'is-invalid': errors['姓名'] }"
-                               placeholder="ex: 王曉明">
-                        </Field>
-                        <error-message name="姓名" class="invalid-feedback"></error-message>
+                               placeholder="ex: 王曉明" />
+                        <ErrorMessage name="姓名" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">信箱</label>
@@ -53,9 +52,8 @@
                                v-model.trim="user.email"
                                rules="email|required"
                                :class="{ 'is-invalid': errors['信箱'] }"
-                               placeholder="dinosaur@example.com">
-                        </Field>
-                        <error-message name="信箱" class="invalid-feedback"></error-message>
+                               placeholder="dinosaur@example.com" />
+                        <ErrorMessage name="信箱" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
                         <label for="tel" class="form-label">電話</label>
@@ -66,9 +64,8 @@
                                rules="min:9|required"
                                v-model.trim="user.tel"
                                :class="{ 'is-invalid': errors['電話'] }"
-                               placeholder="ex: 0909111222">
-                        </Field>
-                        <error-message name="電話" class="invalid-feedback"></error-message>
+                               placeholder="ex: 0909111222" />
+                        <ErrorMessage name="電話" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">地址</label>
@@ -79,9 +76,8 @@
                                rules="required"
                                v-model.trim="user.address"
                                :class="{ 'is-invalid': errors['地址'] }"
-                               placeholder="ex: 台北市大安區新生南路一段">
-                        </Field>
-                        <error-message name="地址" class="invalid-feedback"></error-message>
+                               placeholder="ex: 台北市大安區新生南路一段" />
+                        <ErrorMessage name="地址" class="invalid-feedback" />
                     </div>
                     <div class="mb-6">
                         <label for="payment_method" class="form-label">付款方式</label>
@@ -98,7 +94,7 @@
                           <option value="信用卡">信用卡</option>
                           <option value="Apple Pay">Apple Pay</option>
                         </Field>
-                        <error-message name="付款方式" class="invalid-feedback"></error-message>
+                        <ErrorMessage name="付款方式" class="invalid-feedback" />
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">留言區</label>
@@ -110,7 +106,7 @@
                     </div>
                     <div class="buttons">
                         <router-link to="/dino-park/cart/list"
-                                     class="btn  btn-outline-primary">
+                                     class="btn btn-outline-primary">
                             <span class="material-icons">arrow_back_ios</span>
                             回購物車
                         </router-link>
@@ -127,6 +123,7 @@
        </div>
    </div>
 </template>
+
 <script>
 export default {
   data () {

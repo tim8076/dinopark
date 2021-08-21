@@ -1,12 +1,12 @@
 <template>
    <div class="product pb-8 bg-color">
         <Loading v-model:active="isLoading">
-                 <div class="loadingio-spinner-rolling-feeb69z48bi">
-                  <div class="ldio-947txsafiul">
-                    <div>
-                    </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
                   </div>
-                </div>
+              </div>
+          </div>
         </Loading>
         <div class="container py-5">
              <Breadcrumb :breadcrumb="{
@@ -18,24 +18,23 @@
                 show: true,
                 title: product.title,
               }
-            }">
-            </Breadcrumb>
-            <div class="row ">
+            }" />
+            <div class="row">
                 <div class="col-md-6 mb-6">
                     <img class="mb-3" :src="product.imageUrl" :alt="product.title">
-                    <div class="d-flex">
+                    <div class="d-flex" v-if="product.imagesUrl[0]">
                        <div v-for="image in product.imagesUrl"
                             :key="image"
                             class="product-img-sm"
                             @mouseenter="setImageUrl(image)">
-                            <img :src="image" class="w-100">
+                            <img :src="image" alt="product-image" class="w-100">
                        </div>
                     </div>
                 </div>
-                <div class="col-md-6  px-6 px-md-8">
+                <div class="col-md-6 px-6 px-md-8">
                     <h2 class="fs-2 fw-bold mb-3 mb-md-6">{{ product.title }}</h2>
                     <p class="mb-3 mb-md-4 description">{{ product.description }}</p>
-                    <p class="mb-3 mb-md-4 content fw-bold ">{{ product.content }}</p>
+                    <p class="mb-3 mb-md-4 content fw-bold">{{ product.content }}</p>
                     <div class="d-flex align-items-center me-3 mb-3"
                          v-for="(spec, index) in product.productSpecs"
                          :key="spec">
@@ -67,10 +66,11 @@
                         </div>
                     </div>
                     <p class="text-primary">NT$ <span class="fs-2 fw-bolder">{{ countPrice }}</span></p>
-                    <div class="buttons ">
+                    <div class="buttons">
                         <button class="btn btn-outline-primary p-2 d-flex
                                        justify-content-center
                                        align-items-center"
+                                type="button"
                                 @click="addToFavorite">
                                 <span class="material-icons me-2">favorite_border</span>
                                 加入收藏
@@ -78,6 +78,7 @@
                         <button class="btn btn-primary p-2 d-flex
                                        justify-content-center
                                        align-items-center"
+                                type="button"
                                 @click="addToCart">
                                 <span class="material-icons me-2">shopping_cart</span>
                                 加入購物車
@@ -102,34 +103,22 @@
                 :space-between="30"
                 navigation
                 :loop="true"
-                :pagination="{ clickable: true }"
-                :scrollbar="{ draggable: true }"
-                :autoplay="{
-                  'delay': 2500,
-                  'disableOnInteraction': false
-                }"
-                :breakpoints="{
-                  '768': {
-                    'slidesPerView': 2,
-                    'spaceBetween': 40
-                  },
-                  '1025': {
-                    'slidesPerView': 4,
-                    'spaceBetween': 40
-                  }
-                }">
+                :pagination="swiperSetting.pagination"
+                :scrollbar="swiperSetting.scrollbar"
+                :autoplay="swiperSetting.autoplay"
+                :breakpoints="swiperSetting.breakpoints">
                   <swiper-slide v-for="product in recommendProducts" :key="product.id">
                     <Card :product-data="product"
-                          @add-cart="addToCart">
-                    </Card>
+                          @add-cart="addToCart" />
                   </swiper-slide>
               </swiper>
             </div>
         </div>
    </div>
 </template>
+
 <script>
-import Card from '../../components/front/Card.vue'
+import Card from '@/components/front/Card.vue'
 export default {
   data () {
     return {
@@ -143,12 +132,32 @@ export default {
         product_id: '',
         qty: 1,
         productSpecs: []
+      },
+      swiperSetting: {
+        scrollbar: {
+          draggable: true
+        },
+        pagination: {
+          clickable: true
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40
+          },
+          1025: {
+            slidesPerView: 4,
+            spaceBetween: 40
+          }
+        }
       }
     }
   },
-  components: {
-    Card
-  },
+  components: { Card },
   computed: {
     content () {
       const content = this.product.content

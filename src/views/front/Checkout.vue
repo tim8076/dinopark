@@ -1,11 +1,11 @@
 <template>
     <Loading v-model:active="isLoading">
-        <div class="loadingio-spinner-rolling-feeb69z48bi">
-            <div class="ldio-947txsafiul">
-                <div>
-                </div>
-            </div>
-        </div>
+          <div class="outter-spinner">
+              <div class="inner-spinner">
+                  <div>
+                  </div>
+              </div>
+          </div>
     </Loading>
     <div class="checkout">
        <div class="container py-6 mh-100vh"  v-if="!isPaid">
@@ -105,6 +105,7 @@
                         <tr>
                           <td>
                             <button class="btn btn-primary d-block ms-auto"
+                                    type="button"
                                     @click="checkout">確認付款
                             </button>
                           </td>
@@ -157,6 +158,7 @@
        </div>
     </div>
 </template>
+
 <script>
 export default {
   data () {

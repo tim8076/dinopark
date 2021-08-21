@@ -83,8 +83,9 @@
     </div>
   </div>
 </template>
+
 <script>
-import Modal from '../../mixins/Modal.vue'
+import Modal from '@/mixins/Modal.vue'
 export default {
   props: {
     tempCoupon: {
