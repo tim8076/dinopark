@@ -26,7 +26,6 @@
                                id="imgUpload"
                                @change="upLoadImage('main-image', $event)">
                         <img  class="img-fluid mb-3"
-                              alt="main-image"
                               :src="tempProduct.imageUrl"
                               v-if="!isLoading">
                         <div  class="d-flex
@@ -48,7 +47,6 @@
                                :id="`imagesUrl${index}`"
                                @change="upLoadImage(index, $event)">
                              <img  class="img-fluid mb-3"
-                                   alt="main-image"
                                    :src="tempProduct.imagesUrl[index]">
                         </div>
                         <button class="btn btn-info me-3 mb-3"
